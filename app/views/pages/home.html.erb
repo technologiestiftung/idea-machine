@@ -1,4 +1,12 @@
-<div>
-  <h1 class="font-bold text-4xl">Pages#home</h1>
-  <p>Find me in app/views/pages/home.html.erb</p>
+<div class="p-4 w-full justify-self-center self-center">
+  <% if @latest_rolls.compact.present? %>
+    <div class="grid grid-cols-3 gap-4">
+      <% @latest_rolls.each do |roll| %>
+        <div class="px-4 py-8 border border-gray-400 rounded text-center">
+          <p><%= roll.side.die.title %></p>
+          <h2 class="text-2xl font-bold"><%= roll.side.title %></h2>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
