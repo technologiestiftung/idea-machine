@@ -14,6 +14,6 @@ class RollsController < ApplicationController
   private
 
   def roll_params
-    params.require(:roll).permit(:die_id, :side_id)
+    params.require(:roll).permit(:side_id)
   end
 end

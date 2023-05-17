@@ -18,11 +18,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_122658) do
   end
 
   create_table "rolls", force: :cascade do |t|
-    t.integer "die_id", null: false
     t.integer "side_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["die_id"], name: "index_rolls_on_die_id"
     t.index ["side_id"], name: "index_rolls_on_side_id"
   end
 
@@ -34,7 +32,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_122658) do
     t.index ["die_id"], name: "index_sides_on_die_id"
   end
 
-  add_foreign_key "rolls", "dice"
   add_foreign_key "rolls", "sides"
   add_foreign_key "sides", "dice"
 end

@@ -1,7 +1,6 @@
 class CreateRolls < ActiveRecord::Migration[7.0]
   def change
     create_table :rolls do |t|
-      t.references :die, null: false, foreign_key: true
       t.references :side, null: false, foreign_key: true
 
       t.timestamps
