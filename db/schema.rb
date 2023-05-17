@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_17_121814) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_17_122658) do
   create_table "dice", force: :cascade do |t|
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rolls", force: :cascade do |t|
+    t.integer "die_id", null: false
+    t.integer "side_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["die_id"], name: "index_rolls_on_die_id"
+    t.index ["side_id"], name: "index_rolls_on_side_id"
   end
 
   create_table "sides", force: :cascade do |t|
@@ -25,5 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_121814) do
     t.index ["die_id"], name: "index_sides_on_die_id"
   end
 
+  add_foreign_key "rolls", "dice"
+  add_foreign_key "rolls", "sides"
   add_foreign_key "sides", "dice"
 end
