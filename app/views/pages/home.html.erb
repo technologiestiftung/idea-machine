@@ -3,8 +3,10 @@
     <div class="grid grid-cols-3 gap-4">
       <% @latest_rolls.each do |roll| %>
         <div class="px-4 py-8 border border-gray-400 rounded text-center">
-          <p><%= roll.side.die.title %></p>
-          <h2 class="text-2xl font-bold"><%= roll.side.title %></h2>
+          <%= turbo_stream_from dom_id(roll.side.die) %>
+          <div id="<%= dom_id(roll.side.die) %>">
+            <%= render partial: "sides/side", locals: { side: roll.side } %>
+          </div>
         </div>
       <% end %>
     </div>
