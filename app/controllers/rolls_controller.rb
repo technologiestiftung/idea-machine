@@ -1,4 +1,6 @@
 class RollsController < ApplicationController
+  skip_forgery_protection
+
   def create
     @roll = Roll.new(roll_params)
 
