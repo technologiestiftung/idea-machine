@@ -2,6 +2,7 @@ class Roll < ApplicationRecord
   include ActionView::RecordIdentifier
 
   belongs_to :side
+  has_and_belongs_to_many :ideas
 
   after_create_commit :update_latest_roll
 
