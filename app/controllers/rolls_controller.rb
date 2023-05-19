@@ -2,7 +2,11 @@ class RollsController < ApplicationController
   skip_forgery_protection
 
   def create
-    @roll = Roll.new(roll_params)
+    die_shortcode, side_shortcode = roll_params[:shortcode].chars
+    die = Die.where(shortcode: die_shortcode)
+    side = Side.where(shortcode: side_shortcode.to_i).where(die: die).first
+
+    @roll = Roll.new(side: side)
 
     respond_to do |format|
       if @roll.save
@@ -16,6 +20,6 @@ class RollsController < ApplicationController
   private
 
   def roll_params
-    params.require(:roll).permit(:side_id)
+    params.require(:roll).permit(:shortcode)
   end
 end
