@@ -1,5 +1,11 @@
 one:
   title: "Die A"
+  shortcode: "A"
 
 two:
   title: "Die B"
+  shortcode: "B"
+
+three:
+  title: "Die C"
+  shortcode: "C"

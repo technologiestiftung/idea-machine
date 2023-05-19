@@ -10,11 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_19_072548) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_19_093552) do
   create_table "dice", force: :cascade do |t|
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "shortcode", null: false
+    t.index ["shortcode"], name: "index_dice_on_shortcode", unique: true
   end
 
   create_table "ideas", force: :cascade do |t|
@@ -40,7 +42,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_072548) do
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "shortcode", null: false
     t.index ["die_id"], name: "index_sides_on_die_id"
+    t.index ["shortcode", "die_id"], name: "index_sides_on_shortcode_and_die_id", unique: true
   end
 
   add_foreign_key "rolls", "sides"

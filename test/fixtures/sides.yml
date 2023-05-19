@@ -1,7 +1,14 @@
 one:
   die: one
-  title: "Written on the side"
+  title: "Verwaltung"
+  shortcode: 1
 
 two:
   die: two
-  title: "Also written on the side"
+  title: "Wasser"
+  shortcode: 7
+
+three:
+  die: three
+  title: "App"
+  shortcode: 13
