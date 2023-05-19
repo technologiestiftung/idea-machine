@@ -1,14 +1,17 @@
 <div class="p-8 w-full justify-self-center self-center">
-  <% if @latest_rolls.compact.present? %>
-    <div class="grid grid-cols-3 gap-8">
-      <% @latest_rolls.each do |roll| %>
-        <div class="px-4 py-8 border border-gray-400 rounded text-center">
-          <%= turbo_stream_from dom_id(roll.side.die) %>
-          <div id="<%= dom_id(roll.side.die) %>">
-            <%= render partial: "sides/side", locals: { side: roll.side } %>
+  <%= turbo_frame_tag "stage" do %>
+    <% if @latest_rolls.compact.present? %>
+      <%= form_with(model: Idea.new, class: "grid grid-cols-3 gap-8") do |form| %>
+        <% @latest_rolls.each do |roll| %>
+          <div class="px-4 py-8 border border-gray-400 rounded text-center">
+            <%= turbo_stream_from dom_id(roll.side.die) %>
+            <div id="<%= dom_id(roll.side.die) %>">
+              <%= render partial: "rolls/roll", locals: {roll: roll} %>
+            </div>
           </div>
-        </div>
+        <% end %>
+        <%= form.submit "Idee generieren", class: "col-span-3 bg-blue-600 text-white p-3" %>
       <% end %>
-    </div>
+    <% end %>
   <% end %>
 </div>

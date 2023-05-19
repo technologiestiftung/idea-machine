@@ -13,6 +13,6 @@ class Roll < ApplicationRecord
   private
 
   def update_latest_roll
-    broadcast_update_to(dom_id(side.die), target: dom_id(side.die), partial: "sides/side", locals: {side: side})
+    broadcast_update_to(dom_id(side.die), target: dom_id(side.die), partial: "rolls/roll", locals: {roll: self})
   end
 end
