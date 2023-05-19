@@ -1,6 +1,6 @@
-<div class="p-4 w-full justify-self-center self-center">
+<div class="p-8 w-full justify-self-center self-center">
   <% if @latest_rolls.compact.present? %>
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-3 gap-8">
       <% @latest_rolls.each do |roll| %>
         <div class="px-4 py-8 border border-gray-400 rounded text-center">
           <%= turbo_stream_from dom_id(roll.side.die) %>
