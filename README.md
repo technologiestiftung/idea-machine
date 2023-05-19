@@ -11,6 +11,7 @@ Web app that creates ChatGPT-generated ideas for the digitalization of Berlin. T
 - [ ] Setup GitHub action CI (including tests and linting)
 - [ ] Add code quality and security tooling (SimpleCov, Brakeman, etc.)
 - [ ] Enable creation of ideas via button press (from ChatGPT)
+- [ ] Document POSTing via JSON
 - [ ] Streamline flow between idea creation and return to die roll view
 - [ ] (Enbale printing result to paper)
 
