@@ -21,7 +21,7 @@ class RollsController < ApplicationController
   private
 
   def roll_params
-    params.require(:roll).permit(:shortcode)
+    params.permit(:shortcode)
   end
 
   def authenticate
