@@ -58,9 +58,10 @@ You can now POST your dice roll results like so:
 ```bash
 curl \
   -H "Accept: application/json" \
-  -H "Content-type: application/json" \
+  -H "Content-type: application/x-www-form-urlencoded" \
+  -H "Authorization: Bearer TOKEN-YOU-SET-IN-CREDENTIALS" \
   -X POST \
-  -d ' {"roll":{"shortcode": "C1"}}' \
+  -d 'shortcode=C3' \
   http://localhost:3000/rolls
 ```
 
