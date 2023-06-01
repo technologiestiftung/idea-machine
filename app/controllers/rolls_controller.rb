@@ -1,5 +1,6 @@
 class RollsController < ApplicationController
   skip_forgery_protection
+  before_action :authenticate
 
   def create
     die_shortcode, side_shortcode = roll_params[:shortcode].chars
@@ -21,5 +22,11 @@ class RollsController < ApplicationController
 
   def roll_params
     params.require(:roll).permit(:shortcode)
+  end
+
+  def authenticate
+    authenticate_or_request_with_http_token do |token, options|
+      ActiveSupport::SecurityUtils.secure_compare(token, Rails.application.credentials.http_token)
+    end
   end
 end
