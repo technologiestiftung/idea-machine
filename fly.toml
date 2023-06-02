@@ -1,0 +1,23 @@
+# fly.toml app configuration file generated for idea-machine on 2023-06-02T15:47:35+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "idea-machine"
+console_command = "/rails/bin/rails console"
+primary_region = "ams"
+
+[[mounts]]
+destination = "/mnt/idea_machine_production"
+source = "idea_machine_production"
+
+[http_service]
+auto_start_machines = true
+auto_stop_machines = true
+force_https = true
+internal_port = 3000
+min_machines_running = 0
+
+[[statics]]
+guest_path = "/rails/public"
+url_prefix = "/"
