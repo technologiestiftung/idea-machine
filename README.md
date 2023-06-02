@@ -14,7 +14,7 @@ Web app that creates ChatGPT-generated ideas for the digitalization of Berlin. T
 - [ ] Enable creation of ideas via button press (from ChatGPT)
 - [ ] Streamline flow between idea creation and return to die roll view
 - [ ] (Enbale printing result to paper)
-- [ ] (Consider protecting JSON endpoint with simple auth check)
+- [x] (Consider protecting JSON endpoint with simple auth check)
 - [ ] Protect everything with simple HTTP Auth
 
 ## Requirements
