@@ -10,7 +10,7 @@
             </div>
           </div>
         <% end %>
-        <%= form.submit "Idee generieren", class: "col-span-3 bg-blue-600 text-white p-3" %>
+        <%= form.submit "Idee generieren", class: "col-span-3 bg-blue-600 text-white p-3 disabled:bg-blue-300 disabled:cursor-not-allowed", disabled: true %>
       <% end %>
     <% end %>
   <% end %>
