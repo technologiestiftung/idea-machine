@@ -88,3 +88,13 @@ bin/dev
 ```
 
 The app will be available at http://localhost:3000
+
+## Deployment
+
+This app is primarily developed for a local exhibition context. It is therefore likely to be deployed locally on a Raspberyy Pi.
+
+However, for testing and debugging reasons, we also deploy an instance to Fly.io.
+
+Follow their [docs for deploying a Rails app](https://fly.io/docs/rails/getting-started/existing/) and for [using SQLite3](https://fly.io/docs/rails/advanced-guides/sqlite3/) as a database.
+
+Once the app is deployed to Fly, we currently manually ran `fly ssh console -C "/rails/bin/rails db:seed"` to seed the database with the initial dice data.
