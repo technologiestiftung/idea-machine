@@ -72,7 +72,11 @@ GEM
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
+    brakeman (6.0.0)
     builder (3.2.4)
+    bundler-audit (0.9.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
     capybara (3.39.1)
       addressable
       matrix
@@ -202,6 +206,8 @@ GEM
       faraday-multipart (>= 1)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    ruby_audit (2.2.0)
+      bundler-audit (~> 0.9.0)
     rubyzip (2.3.2)
     selenium-webdriver (4.9.1)
       rexml (~> 3.2, >= 3.2.5)
@@ -261,6 +267,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  brakeman
   capybara
   debug
   importmap-rails
@@ -269,6 +276,7 @@ DEPENDENCIES
   rails (~> 7.0.4, >= 7.0.4.2)
   redis (~> 4.0)
   ruby-openai
+  ruby_audit
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)
