@@ -62,7 +62,7 @@ curl \
   -H "Authorization: Bearer TOKEN-YOU-SET-IN-CREDENTIALS" \
   -X POST \
   -d 'shortcode=C3' \
-  http://localhost:3000/rolls
+  http://localhost:3000/api/v1/rolls
 ```
 
 The important bit is the shortcode payload that is sent. As of now, we have agreed that all dice emit their result via a mapping of A-C for the die and 1-6 for the result side. This means that currently the shortcodes `A{1-6}`, `B{1-6}`, and `C{1-6}` are valid. All other combinations will be rejected by the app.
