@@ -1,7 +1,7 @@
 <div class="mt-24 p-8 w-full justify-self-center self-top">
   <h1 class="text-2xl w-full text-center mb-5">Ideenmaschine</h1>
   <% if @latest_rolls.compact.present? %>
-    <%= form_with(model: Idea.new, class: "grid grid-cols-3 grid-rows-[auto,minmax(100px,auto),auto] gap-8") do |form| %>
+    <%= form_with(model: Idea.new, class: "grid grid-cols-3 grid-rows-[auto,minmax(150px,auto),auto] gap-8") do |form| %>
       <% @latest_rolls.each do |roll| %>
         <div class="px-4 py-8 border border-gray-400 rounded text-center">
           <%= turbo_stream_from dom_id(roll.side.die) %>
@@ -11,7 +11,8 @@
         </div>
       <% end %>
       <%= tag.div class: "col-span-3" do %>
-        <div id="idea"></div>
+        <%= turbo_stream_from "idea-stream" %>
+        <%= render partial: "shared/idea_placeholder" %>
       <% end %>
       <%= form.submit "Idee generieren", class: "col-span-3 mt-8 w-full bg-blue-600 text-white p-3 cursor-pointer" %>
     <% end %>
