@@ -23,6 +23,8 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.save
+        format.turbo_stream
+
         format.html do
           redirect_to idea_url(@idea),
             notice: "Idea was created"
