@@ -36,6 +36,8 @@ Install dependencies:
 bundle install
 ```
 
+Add the Rails master key to `config/master.key` in order to be able to decrypt and encrypt credentials such as external API keys etc. Find the key in our shared passwords vault.
+
 Create the database:
 
 ```bash
