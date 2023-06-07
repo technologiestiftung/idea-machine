@@ -20,17 +20,17 @@ class IdeasController < ApplicationController
     generated_idea = response.dig("choices", 0, "message", "content")
 
     @idea = Idea.new(description: generated_idea)
+    @idea.rolls << rolls
 
     respond_to do |format|
       if @idea.save
         format.turbo_stream
 
         format.html do
-          redirect_to idea_url(@idea),
-            notice: "Idea was created"
+          redirect_to idea_url(@idea)
         end
       else
-        # format.json { render json: @roll.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path, status: :unprocessable_entity }
       end
     end
   end
