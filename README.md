@@ -10,13 +10,15 @@ Web app that creates ChatGPT-generated ideas for the digitalization of Berlin. T
 - [x] Create UI that always shows latest die rolls
 - [x] Document POSTing via JSON
 - [ ] Setup GitHub action CI (including tests and linting)
-- [ ] Add code quality and security tooling (SimpleCov, Brakeman, etc.)
+- [x] Add code quality and security tooling (SimpleCov, Brakeman, etc.)
 - [x] Enable creation of ideas via button press (from ChatGPT)
 - [x] Streamline flow between idea creation and return to die roll view
-- [ ] (Enbale printing result to paper)
+- [ ] Enbale printing result to paper
 - [x] Consider protecting JSON endpoint with simple auth check
 - [x] Protect everything with simple HTTP Auth
-- [ ] save associated rolls with idea
+- [x] save associated rolls with idea
+- [ ] Style UI
+- [ ] Animate arrival of new rolls
 
 ## Requirements
 
@@ -79,6 +81,8 @@ We use Rails' built-in Minitest. Run all test via
 ```bash
 bin/rails test
 ```
+
+Easch test run collects the current test coverage. Inspect it via `open coverage/index.html`. There is currently no minimum coverage required.
 
 ### Developing with Tailwind
 
