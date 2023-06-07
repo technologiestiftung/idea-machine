@@ -18,8 +18,7 @@ jobs:
       # Add or replace database setup steps here
       - name: Create SQLite database
         run: |
-          mkdir -p database
-          touch database/idea_machine_test.sqlite
+          touch db/test.sqlite
       - name: Set up database schema
         run: bin/rails db:schema:load
       # Add or replace test runners here
