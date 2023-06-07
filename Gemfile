@@ -80,6 +80,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+
+  # Preventing calls to external APIs in tests
+  gem "webmock"
 end
 
 gem "dockerfile-rails", ">= 1.4", group: :development
