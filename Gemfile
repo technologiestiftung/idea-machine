@@ -83,6 +83,9 @@ group :test do
 
   # Preventing calls to external APIs in tests
   gem "webmock"
+
+  # Collect test coverage
+  gem "simplecov", require: false
 end
 
 gem "dockerfile-rails", ">= 1.4", group: :development
