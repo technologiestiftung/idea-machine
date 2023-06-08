@@ -9,7 +9,7 @@ Web app that creates ChatGPT-generated ideas for the digitalization of Berlin. T
 - [x] Setup resources for dice/sides/etc.
 - [x] Create UI that always shows latest die rolls
 - [x] Document POSTing via JSON
-- [ ] Setup GitHub action CI (including tests and linting)
+- [x] Setup GitHub action CI (including tests and linting)
 - [x] Add code quality and security tooling (SimpleCov, Brakeman, etc.)
 - [x] Enable creation of ideas via button press (from ChatGPT)
 - [x] Streamline flow between idea creation and return to die roll view
