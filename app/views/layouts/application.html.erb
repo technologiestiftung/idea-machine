@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>IdeaMachine</title>
+    <title>CityLAB Ideenwürfel</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,7 +11,10 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="min-h-screen w-full flex">
-    <%= yield %>
+  <body class="min-h-screen w-full grid grid-rows-[auto,1fr]">
+    <%= render "shared/header" %>
+    <main class="flex container mx-auto max-w-screen-lg">
+      <%= yield %>
+    </main>
   </body>
 </html>
