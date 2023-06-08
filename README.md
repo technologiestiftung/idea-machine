@@ -76,6 +76,26 @@ The important bit is the shortcode payload that is sent. As of now, we have agre
 
 ## Development
 
+### Credentials
+
+We need a couple of credentials, e.g. for external services. These are stored in the built-in encrypted credentials file (`config/credentials.yml.enc`). You will need to add a local `config/master.key` in order to decrypt them. Find the key in our shared password vault.
+
+In the test environment, we use a different credentials file with fake credentials in order to prevent using/leaking production credentials in test runs. The file can be found in `config/credentials/test.yml.enc` and the key should be set in `config/credentials/test.key`. You can find the test key in our shared password vault as well.
+
+Edit credentials like so (example using nano editor):
+
+Production/master credentials:
+
+```bash
+EDITOR=nano rails credentials:edit
+```
+
+Test credentials:
+
+```bash
+EDITOR=nano rails credentials:edit --environment test
+```
+
 ### Tests
 
 We use Rails' built-in Minitest. Run all test via
@@ -84,7 +104,11 @@ We use Rails' built-in Minitest. Run all test via
 bin/rails test
 ```
 
-Easch test run collects the current test coverage. Inspect it via `open coverage/index.html`. There is currently no minimum coverage required.
+Each test run collects the current test coverage. Inspect it via `open coverage/index.html`. There is currently no minimum coverage required.
+
+#### Tests in CI
+
+We have a GitHub Action set up that runs the tests (see `.github/workflows/rails.yml`).
 
 ### Developing with Tailwind
 
