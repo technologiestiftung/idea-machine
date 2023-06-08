@@ -24,6 +24,8 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.save
+        PrintToPaperJob.perform_later @idea.description
+
         format.turbo_stream
 
         format.html do
