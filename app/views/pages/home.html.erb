@@ -1,20 +1,19 @@
-<div class="mt-24 p-8 w-full justify-self-center self-top">
-  <h1 class="text-2xl w-full text-center mb-5">Ideenmaschine</h1>
+<div class="mt-16 p-8 w-full justify-self-center self-top">
   <% if @latest_rolls.compact.present? %>
-    <%= form_with(model: Idea.new, class: "grid grid-cols-3 grid-rows-[auto,minmax(150px,auto),auto] gap-8") do |form| %>
+    <%= form_with(model: Idea.new, class: "grid grid-cols-3 grid-rows-[auto,auto,minmax(150px,auto)] gap-12") do |form| %>
       <% @latest_rolls.each do |roll| %>
-        <div class="px-4 py-8 border border-gray-400 rounded text-center">
+        <div class="p-8 text-center bg-blue-500 text-white aspect-[1/1]">
           <%= turbo_stream_from dom_id(roll.side.die) %>
-          <div id="<%= dom_id(roll.side.die) %>">
+          <div id="<%= dom_id(roll.side.die) %>" class="h-full flex justify-center items-center">
             <%= render partial: "rolls/roll", locals: {roll: roll} %>
           </div>
         </div>
       <% end %>
+      <%= form.submit "Idee generieren", class: "col-span-3 w-full text-xl bg-magenta-500 font-bold text-white p-3 cursor-pointer disabled:bg-magenta-200 disabled:cursor-not-allowed" %>
       <%= tag.div class: "col-span-3" do %>
         <%= turbo_stream_from "idea-stream" %>
         <%= render partial: "ideas/idea", locals: { idea: nil } %>
       <% end %>
-      <%= form.submit "Idee generieren", class: "col-span-3 mt-8 w-full bg-blue-600 text-white p-3 cursor-pointer" %>
     <% end %>
   <% end %>
   
