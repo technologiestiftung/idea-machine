@@ -1,0 +1,43 @@
+name: "Ruby on Rails CI"
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        with:
+          bundler-cache: true
+      - name: Create SQLite database
+        run: |
+          touch db/test.sqlite
+      - name: Set up database schema
+        run: bin/rails db:schema:load
+      - name: Provide test key to decrypt credentials file
+        run: echo ${{ secrets.RAILS_TEST_KEY }} > config/credentials/test.key
+      - name: Run tests
+        env:
+          RAILS_ENV: test
+        run: bin/rails test:prepare test
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        with:
+          bundler-cache: true
+      - name: Security audit dependencies
+        run: bundle exec ruby-audit check
+      - name: Security audit application code
+        run: bundle exec brakeman -q -w2
+      - name: Lint Ruby files
+        run: bundle exec standardrb
