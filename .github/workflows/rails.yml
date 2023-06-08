@@ -21,10 +21,12 @@ jobs:
           touch db/test.sqlite
       - name: Set up database schema
         run: bin/rails db:schema:load
+      - name: Provide test key
+        run: echo ${{ secrets.RAILS_TEST_KEY }} > config/credentials/test.key
       - name: Run tests
         env:
           RAILS_ENV: test
-          RAILS_TEST_KEY: ${{ secrets.RAILS_TEST_KEY }}
+          #RAILS_TEST_KEY: ${{ secrets.RAILS_TEST_KEY }}
         run: bin/rails test:prepare test
 
   lint:
