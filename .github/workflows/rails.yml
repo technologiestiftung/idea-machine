@@ -25,7 +25,7 @@ jobs:
         env:
           RAILS_ENV: test
           RAILS_TEST_KEY: ${{ secrets.RAILS_TEST_KEY }}
-        run: bin/rails test
+        run: bin/rails test:prepare test
 
   lint:
     runs-on: ubuntu-latest
