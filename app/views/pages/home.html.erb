@@ -2,9 +2,9 @@
   <% if @latest_rolls.compact.present? %>
     <%= form_with(model: Idea.new, class: "grid grid-cols-3 grid-rows-[auto,auto,minmax(150px,auto)] gap-12") do |form| %>
       <% @latest_rolls.each do |roll| %>
-        <div class="p-8 text-center bg-blue-500 text-white aspect-[1/1]">
+        <div>
           <%= turbo_stream_from dom_id(roll.side.die) %>
-          <div id="<%= dom_id(roll.side.die) %>" class="h-full flex justify-center items-center">
+          <div id="<%= dom_id(roll.side.die) %>" class="text-white">
             <%= render partial: "rolls/roll", locals: {roll: roll} %>
           </div>
         </div>
