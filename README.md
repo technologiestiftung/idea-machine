@@ -17,8 +17,8 @@ Web app that creates ChatGPT-generated ideas for the digitalization of Berlin. T
 - [x] Consider protecting JSON endpoint with simple auth check
 - [x] Protect everything with simple HTTP Auth
 - [x] save associated rolls with idea
-- [ ] Style UI
-- [ ] Animate arrival of new rolls
+- [x] Style UI
+- [x] Animate arrival of new rolls
 
 ## Requirements
 
