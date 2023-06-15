@@ -144,28 +144,29 @@ bundle install
 
 Add the Rails master key to `config/master.key` in order to be able to decrypt and encrypt credentials such as external API keys etc. Find the key in our shared passwords vault.
 
-Now create the database:
+Now create and migrate the database:
 
 ```bash
-bin/rails db:create && bin/rails db:migrate
+RAILS_ENV=production bin/rails db:create
+RAILS_ENV=production bin/rails db:migrate
 ```
 
 Seed the database with the dice and sides and keywords:
 
 ```bash
-bin/rails db:seed
+RAILS_ENV=production bin/rails db:seed
 ```
 
 We also need to precompile our assets (at the moment this is only our Tailwind CSS):
 
 ```bash
-bin/rails assets:precompile
+RAILS_ENV=production bin/rails assets:precompile
 ```
 
 Then, we spin up the Rails server and make it available for devices on the same network:
 
 ```bash
-bin/rails s -b 0.0.0.0
+RAILS_ENV=production bin/rails s -b 0.0.0.0
 ```
 
 The app will be available at http://0.0.0.0:3000
@@ -179,7 +180,7 @@ curl \
   -H "Authorization: Bearer {TOKEN-YOU-SET-IN-CREDENTIALS}" \
   -X POST \
   -d 'shortcode=C3' \
-  {HOSTNAME-OF-YOUR-RASPBERRY-PI}/api/v1/rolls
+  {HOSTNAME-OR-IP-OF-YOUR-RASPBERRY-PI}/api/v1/rolls
 ```
 
 Please replace the token and the hostname with the actual values provided in our password vault.
