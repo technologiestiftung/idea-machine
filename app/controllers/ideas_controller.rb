@@ -5,14 +5,19 @@ class IdeasController < ApplicationController
 
   def create
     rolls = Roll.where(id: idea_params[:roll_ids])
-    topics = Side.where(id: rolls.pluck(:side_id)).pluck(:title)
+    sides = Side.includes(:die).where(id: rolls.pluck(:side_id))
+    focus_group = sides.where(die: {title: "Zielgruppe"}).first.title
+    topic = sides.where(die: {title: "Thema"}).first.title
+    medium = sides.where(die: {title: "Medium"}).first.title
 
     openai_client = OpenAI::Client.new(access_token: Rails.application.credentials.openai_token)
 
+    prompt = "Generiere mir eine neue Produktidee für ein smartes Berlin. Die Idee sollte eine digitale Lösung sein, deren Funktion in einer Zeile beschrieben wird. Zielgruppe ist #{focus_group}, technische Lösung #{medium} und das Themenfeld der Idee ist #{topic}. Ein bisschen futuristisch und witzig kann die die Antwort auch sein."
+
     response = openai_client.chat(
       parameters: {
-        model: "gpt-3.5-turbo",
-        messages: [{role: "user", content: "Generiere eine lustige Idee für ein innovatives Projekt in der Verwaltunsdigitalisierung. Die Idee soll enthalten: #{topics}. Die Idee soll in einem Satz zusammengefasst werden."}],
+        model: "gpt-4",
+        messages: [{role: "user", content: prompt}],
         temperature: 0.7
       }
     )
