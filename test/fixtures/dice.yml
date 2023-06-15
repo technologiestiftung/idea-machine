@@ -1,11 +1,11 @@
 one:
-  title: "Die A"
+  title: "Zielgruppe"
   shortcode: "A"
 
 two:
-  title: "Die B"
+  title: "Thema"
   shortcode: "B"
 
 three:
-  title: "Die C"
+  title: "Medium"
   shortcode: "C"
