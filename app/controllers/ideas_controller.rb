@@ -1,23 +1,20 @@
 class IdeasController < ApplicationController
+  include TextGeneration
+
+  rescue_from NoMethodError, with: :no_rolls_exist
+
   def show
     @idea = Idea.find(params[:id])
   end
 
   def create
     rolls = Roll.where(id: idea_params[:roll_ids])
-    topics = Side.where(id: rolls.pluck(:side_id)).pluck(:title)
+    sides = Side.includes(:die).where(id: rolls.pluck(:side_id))
+    focus_group = sides.where(die: {title: "Zielgruppe"}).first.title
+    topic = sides.where(die: {title: "Thema"}).first.title
+    medium = sides.where(die: {title: "Medium"}).first.title
 
-    openai_client = OpenAI::Client.new(access_token: Rails.application.credentials.openai_token)
-
-    response = openai_client.chat(
-      parameters: {
-        model: "gpt-3.5-turbo",
-        messages: [{role: "user", content: "Generiere eine lustige Idee für ein innovatives Projekt in der Verwaltunsdigitalisierung. Die Idee soll enthalten: #{topics}. Die Idee soll in einem Satz zusammengefasst werden."}],
-        temperature: 0.7
-      }
-    )
-
-    generated_idea = response.dig("choices", 0, "message", "content")
+    generated_idea = generate_text(prompt: "Generiere mir eine neue Produktidee für ein smartes Berlin. Die Idee sollte eine digitale Lösung sein, deren Funktion in einer Zeile beschrieben wird. Zielgruppe ist #{focus_group}, technische Lösung #{medium} und das Themenfeld der Idee ist #{topic}. Ein bisschen futuristisch und witzig kann die die Antwort auch sein.")
 
     @idea = Idea.new(description: generated_idea)
     @idea.rolls << rolls
@@ -41,5 +38,9 @@ class IdeasController < ApplicationController
 
   def idea_params
     params.require(:idea).permit(roll_ids: [])
+  end
+
+  def no_rolls_exist
+    redirect_to root_path, status: :unprocessable_entity
   end
 end
