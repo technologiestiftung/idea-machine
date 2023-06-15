@@ -1,6 +1,8 @@
 class IdeasController < ApplicationController
   include TextGeneration
 
+  rescue_from NoMethodError, with: :no_rolls_exist
+
   def show
     @idea = Idea.find(params[:id])
   end
@@ -36,5 +38,9 @@ class IdeasController < ApplicationController
 
   def idea_params
     params.require(:idea).permit(roll_ids: [])
+  end
+
+  def no_rolls_exist
+    redirect_to root_path, status: :unprocessable_entity
   end
 end
