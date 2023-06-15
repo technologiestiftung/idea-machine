@@ -1,4 +1,6 @@
 class IdeasController < ApplicationController
+  include TextGeneration
+
   def show
     @idea = Idea.find(params[:id])
   end
@@ -10,19 +12,7 @@ class IdeasController < ApplicationController
     topic = sides.where(die: {title: "Thema"}).first.title
     medium = sides.where(die: {title: "Medium"}).first.title
 
-    openai_client = OpenAI::Client.new(access_token: Rails.application.credentials.openai_token)
-
-    prompt = "Generiere mir eine neue Produktidee für ein smartes Berlin. Die Idee sollte eine digitale Lösung sein, deren Funktion in einer Zeile beschrieben wird. Zielgruppe ist #{focus_group}, technische Lösung #{medium} und das Themenfeld der Idee ist #{topic}. Ein bisschen futuristisch und witzig kann die die Antwort auch sein."
-
-    response = openai_client.chat(
-      parameters: {
-        model: "gpt-4",
-        messages: [{role: "user", content: prompt}],
-        temperature: 0.7
-      }
-    )
-
-    generated_idea = response.dig("choices", 0, "message", "content")
+    generated_idea = generate_text(prompt: "Generiere mir eine neue Produktidee für ein smartes Berlin. Die Idee sollte eine digitale Lösung sein, deren Funktion in einer Zeile beschrieben wird. Zielgruppe ist #{focus_group}, technische Lösung #{medium} und das Themenfeld der Idee ist #{topic}. Ein bisschen futuristisch und witzig kann die die Antwort auch sein.")
 
     @idea = Idea.new(description: generated_idea)
     @idea.rolls << rolls
