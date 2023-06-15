@@ -1,5 +1,5 @@
 <div class="mt-16 p-8 w-full justify-self-center self-top">
-  <% if @latest_rolls.compact.present? %>
+  <% if @latest_rolls.present? %>
     <%= form_with(model: Idea.new, class: "grid grid-cols-3 grid-rows-[auto,auto,minmax(150px,auto)] gap-12") do |form| %>
       <% @latest_rolls.each do |roll| %>
         <div>
