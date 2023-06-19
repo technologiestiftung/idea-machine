@@ -1,8 +1,38 @@
 # (Semi-serious) Idea Machine
 
-Web app that creates ChatGPT-generated ideas for the digitalization of Berlin. The ideas are explicitly semi-serious and are intended as a conversation starter. The ideas are generated from physical die rolls that emit their result side and POST it to the web app. Each side is associated with a term such as "App", "Bäume", etc. that serves as input to the idea generation.
+Web app that creates ChatGPT-generated ideas for the digitalization of Berlin. The ideas are explicitly semi-serious and are intended as a conversation starter. The ideas are generated from physical die rolls that emit their result side and POST it to the web app. Each side is associated with a term such as "Web-App", "Gesundheit", etc. that serves as input to the idea generation.
 
-> This app is a Ruby on Rails application.
+![Technical setup of the app](/public/idea-machine-setup.png)
+
+The app works in combination with the [code for the Arduino boards](https://github.com/technologiestiftung/idea-machine-dice/).
+
+We curate the possible roll values via a comination of dice and sides, as they are present in the database (see the seeds in `db/seeds.rb`). Valid shortcodes to be posted are currently:
+
+```plain
+[Focus group]
+A1 = Berliner Bürger:innen
+A2 = Kinder
+A3 = Verwaltungs-Angestellte
+A4 = Senior:innen
+A5 = Familien
+A6 = Nachtschwärmer
+
+[Topic]
+B1 = Soziales Miteinander
+B2 = Mobilität
+B3 = Gesundheit
+B4 = Stadtentwicklung
+B5 = Wohnen
+B6 = Energie und Umwelt
+
+[Medium]
+C1 = Web-App
+C2 = mobile App
+C3 = API
+C4 = Künstliche Intelligenz
+C5 = Virtual Reality
+C6 = IoT
+```
 
 ## Requirements
 
