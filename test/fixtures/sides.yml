@@ -12,3 +12,8 @@ three:
   die: three
   title: "App"
   shortcode: 13
+
+unused:
+  die: unused
+  title: "Cucumber"
+  shortcode: 21
