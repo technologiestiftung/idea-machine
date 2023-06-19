@@ -4,22 +4,6 @@ Web app that creates ChatGPT-generated ideas for the digitalization of Berlin. T
 
 > This app is a Ruby on Rails application.
 
-## Open todo's
-
-- [x] Setup resources for dice/sides/etc.
-- [x] Create UI that always shows latest die rolls
-- [x] Document POSTing via JSON
-- [x] Setup GitHub action CI (including tests and linting)
-- [x] Add code quality and security tooling (SimpleCov, Brakeman, etc.)
-- [x] Enable creation of ideas via button press (from ChatGPT)
-- [x] Streamline flow between idea creation and return to die roll view
-- [ ] Enbale printing result to paper
-- [x] Consider protecting JSON endpoint with simple auth check
-- [x] Protect everything with simple HTTP Auth
-- [x] save associated rolls with idea
-- [x] Style UI
-- [x] Animate arrival of new rolls
-
 ## Requirements
 
 - Ruby version as defined in `.ruby-version`
