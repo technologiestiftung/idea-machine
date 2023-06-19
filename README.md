@@ -190,3 +190,9 @@ For testing and debugging reasons, we also deployed an instance to Fly.io.
 Follow their [docs for deploying a Rails app](https://fly.io/docs/rails/getting-started/existing/) and for [using SQLite3](https://fly.io/docs/rails/advanced-guides/sqlite3/) as a database.
 
 Once the app is deployed to Fly, we currently manually ran `fly ssh console -C "/rails/bin/rails db:seed"` to seed the database with the initial dice data.
+
+## Printing
+
+The purpose of the app is to physically print a genrated idea with a small label printer. The printer is connected to a Raspberry Pi (not the one that hosts the app!) with a 32bit system. This is because the driver for the printer doesn't work with the Raspberry Pi OS 64bit which hosts this app.
+
+Technically we solve this by running a Rails job in idea creation. The job SSHs into the Raspberry Pi for the printer and executes the print command with the generated idea as a text input. Find details for this in `app/jobs/print_to_paper_job.rb`.
