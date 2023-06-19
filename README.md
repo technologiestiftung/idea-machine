@@ -4,22 +4,6 @@ Web app that creates ChatGPT-generated ideas for the digitalization of Berlin. T
 
 > This app is a Ruby on Rails application.
 
-## Open todo's
-
-- [x] Setup resources for dice/sides/etc.
-- [x] Create UI that always shows latest die rolls
-- [x] Document POSTing via JSON
-- [x] Setup GitHub action CI (including tests and linting)
-- [x] Add code quality and security tooling (SimpleCov, Brakeman, etc.)
-- [x] Enable creation of ideas via button press (from ChatGPT)
-- [x] Streamline flow between idea creation and return to die roll view
-- [ ] Enbale printing result to paper
-- [x] Consider protecting JSON endpoint with simple auth check
-- [x] Protect everything with simple HTTP Auth
-- [x] save associated rolls with idea
-- [x] Style UI
-- [x] Animate arrival of new rolls
-
 ## Requirements
 
 - Ruby version as defined in `.ruby-version`
@@ -104,13 +88,17 @@ We can now inspect the available versions via:
 rbenv install --list
 ```
 
+Before installing our Ruby version, we need to install `libyaml-dev` as a dependency:
+
+```bash
+sudo apt-get install libyaml-dev
+```
+
 Now we can install our desired Ruby version (defined in `.ruby-version`, `3.2.0` as of now).
 
 ```bash
 rbenv install 3.2.0
 ```
-
-> That actually failed the first time I tried. I've had to `sudo apt-get install libyaml-dev` to install libyaml and then run `rbenv install 3.2.0` again.
 
 #### Installing SQLite3
 
@@ -142,7 +130,13 @@ Install dependencies:
 bundle install
 ```
 
-Add the Rails master key to `config/master.key` in order to be able to decrypt and encrypt credentials such as external API keys etc. Find the key in our shared passwords vault.
+Create a file for the Rails master key (used for decrypting credentials):
+
+```bash
+touch config/master.key
+```
+
+This is a simple text file. Write the master key into that file. You can find it in our shared password vault. The key is a combination of letters and digits.
 
 Now create and migrate the database:
 
@@ -166,7 +160,7 @@ RAILS_ENV=production bin/rails assets:precompile
 Then, we spin up the Rails server and make it available for devices on the same network:
 
 ```bash
-RAILS_ENV=production bin/rails s -b 0.0.0.0
+RAILS_ENV=production RAILS_SERVE_STATIC_FILES=true bin/rails s -b 0.0.0.0
 ```
 
 The app will be available at http://0.0.0.0:3000
@@ -180,10 +174,10 @@ curl \
   -H "Authorization: Bearer {TOKEN-YOU-SET-IN-CREDENTIALS}" \
   -X POST \
   -d 'shortcode=C3' \
-  {HOSTNAME-OR-IP-OF-YOUR-RASPBERRY-PI}/api/v1/rolls
+  {HOSTNAME-OR-IP-OF-YOUR-RASPBERRY-PI}:3000/api/v1/rolls
 ```
 
-Please replace the token and the hostname with the actual values provided in our password vault.
+Please replace the values in curly braces (and the curly braces!) with the actual values provided in our password vault.
 
 The important bit in the request is the shortcode payload that is sent. As of now, we have agreed that all dice emit their result via a mapping of A-C for the die and 1-6 for the result side. This means that currently the shortcodes `A{1-6}`, `B{1-6}`, and `C{1-6}` are valid. All other combinations will be rejected by the app.
 
@@ -196,3 +190,9 @@ For testing and debugging reasons, we also deployed an instance to Fly.io.
 Follow their [docs for deploying a Rails app](https://fly.io/docs/rails/getting-started/existing/) and for [using SQLite3](https://fly.io/docs/rails/advanced-guides/sqlite3/) as a database.
 
 Once the app is deployed to Fly, we currently manually ran `fly ssh console -C "/rails/bin/rails db:seed"` to seed the database with the initial dice data.
+
+## Printing
+
+The purpose of the app is to physically print a genrated idea with a small label printer. The printer is connected to a Raspberry Pi (not the one that hosts the app!) with a 32bit system. This is because the driver for the printer doesn't work with the Raspberry Pi OS 64bit which hosts this app.
+
+Technically we solve this by running a Rails job in idea creation. The job SSHs into the Raspberry Pi for the printer and executes the print command with the generated idea as a text input. Find details for this in `app/jobs/print_to_paper_job.rb`.
