@@ -2,7 +2,7 @@ require "test_helper"
 
 class DieTest < ActiveSupport::TestCase
   test "accepts die with valid attributes" do
-    die = Die.new(title: "Test title", shortcode: "X")
+    die = Die.new(title: 1, shortcode: "X")
     assert die.valid?
   end
 

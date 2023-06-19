@@ -22,11 +22,11 @@ class IdeasControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "fails to create idea with invalid params" do
+  test "fails to create idea when no text is generated" do
     stub_request(:post, "https://api.openai.com/v1/chat/completions")
       .to_return(status: 200, body: {}.to_json)
 
-    post ideas_url, params: {idea: {roll_ids: nil}}
+    post ideas_url, params: {idea: {roll_ids: [@roll_a.id, @roll_b.id, @roll_c.id]}}
     assert_response :unprocessable_entity
   end
 end
