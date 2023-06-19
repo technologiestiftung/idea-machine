@@ -4,22 +4,6 @@ Web app that creates ChatGPT-generated ideas for the digitalization of Berlin. T
 
 > This app is a Ruby on Rails application.
 
-## Open todo's
-
-- [x] Setup resources for dice/sides/etc.
-- [x] Create UI that always shows latest die rolls
-- [x] Document POSTing via JSON
-- [x] Setup GitHub action CI (including tests and linting)
-- [x] Add code quality and security tooling (SimpleCov, Brakeman, etc.)
-- [x] Enable creation of ideas via button press (from ChatGPT)
-- [x] Streamline flow between idea creation and return to die roll view
-- [ ] Enbale printing result to paper
-- [x] Consider protecting JSON endpoint with simple auth check
-- [x] Protect everything with simple HTTP Auth
-- [x] save associated rolls with idea
-- [x] Style UI
-- [x] Animate arrival of new rolls
-
 ## Requirements
 
 - Ruby version as defined in `.ruby-version`
@@ -206,3 +190,9 @@ For testing and debugging reasons, we also deployed an instance to Fly.io.
 Follow their [docs for deploying a Rails app](https://fly.io/docs/rails/getting-started/existing/) and for [using SQLite3](https://fly.io/docs/rails/advanced-guides/sqlite3/) as a database.
 
 Once the app is deployed to Fly, we currently manually ran `fly ssh console -C "/rails/bin/rails db:seed"` to seed the database with the initial dice data.
+
+## Printing
+
+The purpose of the app is to physically print a genrated idea with a small label printer. The printer is connected to a Raspberry Pi (not the one that hosts the app!) with a 32bit system. This is because the driver for the printer doesn't work with the Raspberry Pi OS 64bit which hosts this app.
+
+Technically we solve this by running a Rails job in idea creation. The job SSHs into the Raspberry Pi for the printer and executes the print command with the generated idea as a text input. Find details for this in `app/jobs/print_to_paper_job.rb`.

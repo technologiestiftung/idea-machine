@@ -2,14 +2,9 @@ class PrintToPaperJob < ApplicationJob
   queue_as :default
 
   def perform(text)
-    # puts("This is a placeholder for the printing to paper job. The text to be printed would be this:")
-    # puts(text)
-
-    # file = Tempfile.new
-    # file.write text
-    # file.rewind
-
-    # This is just a placeholder for a possible call to the printer:
-    # system("lpr -P myprintername #{file.path}")
+    Net::SSH.start(Rails.application.credentials.printing_raspi["hostname"], Rails.application.credentials.printing_raspi["username"], password: Rails.application.credentials.printing_raspi["password"]) do |ssh|
+      ssh.exec!("echo '#{text}' | lp -d POS-58-Series")
+      ssh.exec!("exit\n")
+    end
   end
 end
