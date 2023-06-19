@@ -104,13 +104,17 @@ We can now inspect the available versions via:
 rbenv install --list
 ```
 
+Before installing our Ruby version, we need to install `libyaml-dev` as a dependency:
+
+```bash
+sudo apt-get install libyaml-dev
+```
+
 Now we can install our desired Ruby version (defined in `.ruby-version`, `3.2.0` as of now).
 
 ```bash
 rbenv install 3.2.0
 ```
-
-> That actually failed the first time I tried. I've had to `sudo apt-get install libyaml-dev` to install libyaml and then run `rbenv install 3.2.0` again.
 
 #### Installing SQLite3
 
@@ -142,7 +146,13 @@ Install dependencies:
 bundle install
 ```
 
-Add the Rails master key to `config/master.key` in order to be able to decrypt and encrypt credentials such as external API keys etc. Find the key in our shared passwords vault.
+Create a file for the Rails master key (used for decrypting credentials):
+
+```bash
+touch config/master.key
+```
+
+This is a simple text file. Write the master key into that file. You can find it in our shared password vault. The key is a combination of letters and digits.
 
 Now create and migrate the database:
 
@@ -166,7 +176,7 @@ RAILS_ENV=production bin/rails assets:precompile
 Then, we spin up the Rails server and make it available for devices on the same network:
 
 ```bash
-RAILS_ENV=production bin/rails s -b 0.0.0.0
+RAILS_ENV=production RAILS_SERVE_STATIC_FILES=true bin/rails s -b 0.0.0.0
 ```
 
 The app will be available at http://0.0.0.0:3000
@@ -180,10 +190,10 @@ curl \
   -H "Authorization: Bearer {TOKEN-YOU-SET-IN-CREDENTIALS}" \
   -X POST \
   -d 'shortcode=C3' \
-  {HOSTNAME-OR-IP-OF-YOUR-RASPBERRY-PI}/api/v1/rolls
+  {HOSTNAME-OR-IP-OF-YOUR-RASPBERRY-PI}:3000/api/v1/rolls
 ```
 
-Please replace the token and the hostname with the actual values provided in our password vault.
+Please replace the values in curly braces (and the curly braces!) with the actual values provided in our password vault.
 
 The important bit in the request is the shortcode payload that is sent. As of now, we have agreed that all dice emit their result via a mapping of A-C for the die and 1-6 for the result side. This means that currently the shortcodes `A{1-6}`, `B{1-6}`, and `C{1-6}` are valid. All other combinations will be rejected by the app.
 
