@@ -14,7 +14,7 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.save
-        PrintToPaperJob.perform_later @idea.description
+        PrintToPaperJob.perform_later @idea.description if Rails.env.production?
 
         format.turbo_stream
         format.html do
