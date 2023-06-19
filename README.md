@@ -104,13 +104,17 @@ We can now inspect the available versions via:
 rbenv install --list
 ```
 
+Before installing our Ruby version, we need to install `libyaml-dev` as a dependency:
+
+```bash
+sudo apt-get install libyaml-dev
+```
+
 Now we can install our desired Ruby version (defined in `.ruby-version`, `3.2.0` as of now).
 
 ```bash
 rbenv install 3.2.0
 ```
-
-> That actually failed the first time I tried. I've had to `sudo apt-get install libyaml-dev` to install libyaml and then run `rbenv install 3.2.0` again.
 
 #### Installing SQLite3
 
