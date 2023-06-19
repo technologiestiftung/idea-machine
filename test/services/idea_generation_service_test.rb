@@ -3,6 +3,7 @@ require "test_helper"
 class IdeaGenerationServiceTest < ActiveSupport::TestCase
   setup do
     @valid_sides = Side.limit(3)
+    @invalid_sides = dice(:unused).sides
   end
 
   test "generates idea with valid input" do
@@ -10,6 +11,11 @@ class IdeaGenerationServiceTest < ActiveSupport::TestCase
 
     idea = IdeaGenerationService.new(@valid_sides).call
     assert idea.present?
+  end
+
+  test "rejects generating an idea if unused sides are passed" do
+    idea = IdeaGenerationService.new(@invalid_sides).call
+    assert idea.blank?
   end
 
   private

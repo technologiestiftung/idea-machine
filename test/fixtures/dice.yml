@@ -9,3 +9,7 @@ two:
 three:
   title: "medium"
   shortcode: "C"
+
+unused:
+  title: "vegetables"
+  shortcode: "X"
