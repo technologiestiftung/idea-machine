@@ -1,6 +1,6 @@
 <div class="px-8 pt-0 w-full justify-self-center flex items-center max-w-screen-lg mx-auto">
   <% if @latest_rolls.present? %>
-    <%= form_with(model: Idea.new, class: "grid grid-cols-3 grid-rows-auto gap-12", data: { controller: "form", action: "keydown.right@window->form#submit keydown.left@window->form#submit keydown.up@window->form#submit keydown.down@window->form#submit" }) do |form| %>
+    <%= form_with(model: Idea.new, class: "grid grid-cols-3 grid-rows-auto gap-12", data: { controller: "idea-form", action: "keydown.right@window->idea-form#submit keydown.left@window->idea-form#submit keydown.up@window->idea-form#submit keydown.down@window->idea-form#submit" }) do |form| %>
       <% @latest_rolls.each do |roll| %>
         <div class="h-full">
           <%= turbo_stream_from dom_id(roll.side.die) %>
