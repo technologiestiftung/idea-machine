@@ -25,7 +25,7 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
-        run: bin/rails test:prepare test
+        run: bin/rails test:prepare test:all
 
   lint:
     runs-on: ubuntu-latest
