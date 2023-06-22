@@ -19,7 +19,7 @@ class DieComponent < ViewComponent::Base
     @args[:class] =
       class_names(
         @args[:class],
-        "aspect-[1/1] p-12 rounded-md",
+        "w-full aspect-[1/1] p-8 rounded-md",
         "flex flex-wrap justify-center items-center text-center",
         "hidden",
         THEME_MAPPINGS[
