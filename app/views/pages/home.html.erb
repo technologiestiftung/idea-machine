@@ -9,11 +9,12 @@
           </div>
         </div>
       <% end %>
-      <%= tag.div class: "col-span-3" do %>
-        <%= turbo_stream_from "idea-stream" %>
-        <%= render partial: "ideas/idea", locals: { idea: nil } %>
-      <% end %>
     <% end %>
   <% end %>
-  
 </div>
+<%= tag.div class: "p-8 h-full" do %>
+  <%= render FrameComponent.new(class: "h-full") do %>
+    <%= turbo_stream_from "idea-stream" %>
+    <%= render partial: "ideas/idea", locals: { idea: nil } %>
+  <% end %>
+<% end %>

@@ -1,5 +1,5 @@
 <%= tag.div id: "idea" do %>
   <% if idea.present? %>
-    <%= tag.h2 "💡 #{idea.description}", class: "text-3xl italic" %>
+    <%= tag.p idea.description, class: "text-xl" %>
   <% end %>
 <% end %>
