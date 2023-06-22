@@ -29,7 +29,7 @@ B6 = Energie und Umwelt
 C1 = Web-App
 C2 = mobile App
 C3 = API
-C4 = Künstliche Intelligenz
+C4 = soziales Netzwerk
 C5 = Virtual Reality
 C6 = IoT
 ```

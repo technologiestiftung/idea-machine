@@ -16,7 +16,7 @@ end
 
 medium_die = Die.create! title: "medium", shortcode: "C"
 
-MEDIA = ["Web-App", "mobile App", "API", "Künstliche Intelligenz", "Virtual Reality", "IoT"]
+MEDIA = ["Web-App", "mobile App", "API", "soziales Netzwerk", "Virtual Reality", "IoT"]
 
 MEDIA.each_with_index do |medium, idx|
   Side.create! die: medium_die, title: medium, shortcode: idx + 1
