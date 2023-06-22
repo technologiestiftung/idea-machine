@@ -9,7 +9,5 @@
 }
 
 .turbo-progress-bar {
-  @apply bg-pink h-1;
+  @apply bg-pink h-2;
 }
-
-
