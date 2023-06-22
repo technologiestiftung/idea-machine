@@ -1,0 +1,8 @@
+<%= tag.div **@args do %>
+  <%= tag.div class: "w-full" do %>
+    <%= hidden_input_field %>
+    <%= tag.h2 class: "w-full p-4 bg-white text-xl lg:text-2xl font-extrabold uppercase tracking-wide" do %>
+      <%= content %>
+    <% end %>
+  <% end %>
+<% end %>
