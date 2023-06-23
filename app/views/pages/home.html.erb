@@ -15,6 +15,6 @@
 <%= tag.div class: "px-8 pt-0 pb-12" do %>
   <%= render FrameComponent.new(class: "h-full") do %>
     <%= turbo_stream_from "idea-stream" %>
-    <%= render partial: "ideas/idea", locals: { idea: Idea.new(description: "Eine Idee für Berlin"), class: "w-full text-gray-400 text-center" } %>
+    <%= render partial: "ideas/idea_placeholder" %>
   <% end %>
 <% end %>
