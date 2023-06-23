@@ -1,9 +1,6 @@
-<%= tag.div id: dom_id(roll),
-  class: "aspect-[1/1] flex flex-wrap justify-center items-center p-8 text-center bg-blue-500 hidden",
-  data: {controller: "appear", transition_enter: "transition ease-in-out duration-700", transition_enter_start: "transform -rotate-180 text-blue-100/0", transition_enter_end: "transform rotate-0 text-blue-100/100", transition_leave_start: "transform rotate-0 text-blue-100/100", transition_leave_end: "transform rotate-180 text-blue-100/0"} do %>
-  <div>
+<%= render(DieComponent.new(theme: roll.side.die.title, id: dom_id(roll))) do |component| %>
+  <% component.with_hidden_input_field do %>
     <input type="hidden" autocomplete="off" value="<%= roll.id %>" name="idea[roll_ids][]">
-    <h2 class="w-full text-xl lg:text-3xl font-normal"><%= roll.side.title %></h2>
-    <p class="mt-2 inline-block font-bold text-xs px-2 py-0.5 bg-blue-400"><%= roll.side.die.shortcode %><%= roll.side.shortcode %></p>
-  </div>
+  <% end %>
+  <%= roll.side.title %>
 <% end %>

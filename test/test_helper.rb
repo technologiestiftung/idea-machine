@@ -3,6 +3,7 @@ SimpleCov.start "rails" do
   enable_coverage :branch
   primary_coverage :branch
   add_group "Services", "app/services"
+  add_group "Components", "app/components"
 end
 
 ENV["RAILS_ENV"] ||= "test"

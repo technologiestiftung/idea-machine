@@ -14,6 +14,6 @@ class Roll < ApplicationRecord
 
   def update_latest_roll
     broadcast_update_to(dom_id(side.die), target: dom_id(side.die), partial: "rolls/roll", locals: {roll: self})
-    broadcast_replace_to("idea-stream", target: "idea", partial: "ideas/idea", locals: {idea: nil})
+    broadcast_replace_to("idea-stream", target: "idea", partial: "ideas/idea_placeholder")
   end
 end
