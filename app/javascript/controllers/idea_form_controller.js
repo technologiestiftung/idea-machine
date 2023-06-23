@@ -7,8 +7,17 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   submit() {
     this.element.requestSubmit();
+    this.showLoadingState();
+  }
 
-    const placeholder = document.getElementById("idea").querySelector("p");
-    placeholder.textContent = "Idee wird generiert ...";
+  showLoadingState() {
+    const ideaPlaceholderWrapper = document.getElementById("idea");
+
+    ideaPlaceholderWrapper.classList.add("w-full");
+    ideaPlaceholderWrapper.classList.add("text-gray-400");
+    ideaPlaceholderWrapper.classList.add("text-center");
+
+    const placeholderParagraph = idea.querySelector("p");
+    placeholderParagraph.textContent = "Idee wird generiert ...";
   }
 }
