@@ -12,7 +12,7 @@
     <% end %>
   <% end %>
 <% end %>
-<%= tag.div class: "px-8 pt-0 pb-12" do %>
+<%= tag.div class: "px-8 pt-0 pb-20" do %>
   <%= render FrameComponent.new(class: "h-full") do %>
     <%= turbo_stream_from "idea-stream" %>
     <%= render partial: "ideas/idea_placeholder" %>
