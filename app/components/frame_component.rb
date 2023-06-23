@@ -8,7 +8,7 @@ class FrameComponent < ViewComponent::Base
       @args[:class],
       "border border-gray-300",
       "relative",
-      "p-7",
+      "p-12",
       "flex items-center"
     )
   end

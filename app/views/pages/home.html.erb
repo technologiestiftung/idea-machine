@@ -1,20 +1,20 @@
-<div class="px-8 pt-0 w-full justify-self-center flex items-center max-w-screen-lg mx-auto">
+<%= tag.div class: class_names("w-full max-w-screen-lg mx-auto", "px-8 pt-0", "flex items-center") do %>
   <% if @latest_rolls.present? %>
-    <%= form_with(model: Idea.new, class: "grid grid-cols-3 grid-rows-auto gap-12", data: { controller: "idea-form", action: "keydown.right@window->idea-form#submit keydown.left@window->idea-form#submit keydown.up@window->idea-form#submit keydown.down@window->idea-form#submit" }) do |form| %>
+    <%= form_with(model: Idea.new, class: class_names("w-full h-full", "grid grid-cols-3 gap-12"), data: { controller: "idea-form", action: "keydown.right@window->idea-form#submit keydown.left@window->idea-form#submit keydown.up@window->idea-form#submit keydown.down@window->idea-form#submit" }) do |form| %>
       <% @latest_rolls.each do |roll| %>
-        <div class="h-full">
+        <%= tag.div class: class_names("w-full h-full", "flex items-center") do %>
           <%= turbo_stream_from dom_id(roll.side.die) %>
-          <div id="<%= dom_id(roll.side.die) %>" class="text-gray-900 h-full">
+          <%= tag.div id: dom_id(roll.side.die), class: "w-full text-gray-900" do %>
             <%= render partial: "rolls/roll", locals: {roll: roll} %>
-          </div>
-        </div>
+          <% end %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
-</div>
-<%= tag.div class: "p-8 pt-0 h-full" do %>
+<% end %>
+<%= tag.div class: "px-8 pt-0 pb-12" do %>
   <%= render FrameComponent.new(class: "h-full") do %>
     <%= turbo_stream_from "idea-stream" %>
-    <%= render partial: "ideas/idea", locals: { idea: Idea.new(description: "Eine Idee für Berlin"), class: "text-gray-500 w-full text-center" } %>
+    <%= render partial: "ideas/idea", locals: { idea: Idea.new(description: "Eine Idee für Berlin"), class: "w-full text-gray-400 text-center" } %>
   <% end %>
 <% end %>
