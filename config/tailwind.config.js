@@ -13,13 +13,13 @@ module.exports = {
   theme: {
     colors: {
       pink: {
-        DEFAULT: "#DE73C5",
+        DEFAULT: "#e7749a",
       },
       blue: {
-        DEFAULT: "#0043C0",
+        DEFAULT: "#0a358a",
       },
       yellow: {
-        DEFAULT: "#E9D502",
+        DEFAULT: "#f0dc00",
       },
       gray: colors.gray,
       white: "#fff",
