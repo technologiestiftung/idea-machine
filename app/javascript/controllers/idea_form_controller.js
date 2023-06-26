@@ -3,6 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 /**
  * Controller that enhances the ideas form. When programmatically submitting the form,
  * we set a loading message. This is not an ideal implementation, but for now it's okay.
+ * We also let the form auto-submit when a URL param for a timer is present.
  */
 export default class extends Controller {
   static targets = ["input"];
@@ -20,7 +21,7 @@ export default class extends Controller {
     const timerInMilliseconds = this.timerValue * 1000;
 
     const isValidTimer =
-      timerInMilliseconds > 1000 || timerInMilliseconds < 10_000;
+      timerInMilliseconds > 1000 && timerInMilliseconds < 10_000;
 
     if (isValidTimer) {
       this.timerId = setTimeout(() => {
