@@ -38,11 +38,14 @@ export default class extends Controller {
   showLoadingState() {
     const ideaPlaceholderWrapper = document.getElementById("idea");
 
-    ideaPlaceholderWrapper.classList.add("w-full");
-    ideaPlaceholderWrapper.classList.add("text-gray-400");
     ideaPlaceholderWrapper.classList.add("text-center");
+    ideaPlaceholderWrapper.classList.add("text-gray-900");
 
     const placeholderParagraph = idea.querySelector("p");
     placeholderParagraph.textContent = "Idee wird generiert ...";
+
+    const spinner = document.getElementById("spinner");
+    spinner.classList.remove("hidden");
+    spinner.classList.add("block");
   }
 }
