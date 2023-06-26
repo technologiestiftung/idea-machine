@@ -6,10 +6,27 @@ import { Controller } from "@hotwired/stimulus";
  */
 export default class extends Controller {
   static targets = ["input"];
+  static values = { timer: { type: Number, default: -1 } };
 
-  inputTargetConnected(element) {
-    console.log("Connected");
-    console.log(element);
+  timerId() {
+    return null;
+  }
+
+  inputTargetConnected() {
+    if (this.timerId) {
+      clearTimeout(this.timerId);
+    }
+
+    const timerInMilliseconds = this.timerValue * 1000;
+
+    const isValidTimer =
+      timerInMilliseconds > 1000 || timerInMilliseconds < 10_000;
+
+    if (isValidTimer) {
+      this.timerId = setTimeout(() => {
+        this.submit();
+      }, timerInMilliseconds);
+    }
   }
 
   submit() {
