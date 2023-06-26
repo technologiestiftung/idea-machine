@@ -1,1 +1,2 @@
-<%= render partial: "ideas/idea", locals: { idea: Idea.new(description: "Eine Idee für Berlin"), class: "w-full text-gray-400 text-center" } %>
+<%= render(SpinnerComponent.new(id: "spinner", class: "hidden")) %>
+<%= render partial: "ideas/idea", locals: { idea: Idea.new(description: "Eine Idee für Berlin"), class: "text-gray-400 text-center" } %>
