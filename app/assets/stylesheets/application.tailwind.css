@@ -7,8 +7,7 @@
     font-family: "National";
     font-style: normal;
     font-weight: 400;
-    src: local("National-Regular"),
-      url(NationalWeb-Regular.woff2) format("woff2");
+    src: local("National-Regular");
     font-display: swap;
   }
 
@@ -16,8 +15,7 @@
     font-family: "National";
     font-style: normal;
     font-weight: 800;
-    src: local("National-Extrabold"),
-      url(NationalWeb-Extrabold.woff2) format("woff2");
+    src: local("National-Extrabold");
     font-display: swap;
   }
 
