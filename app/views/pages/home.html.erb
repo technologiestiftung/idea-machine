@@ -5,7 +5,7 @@
         <%= tag.div class: class_names("w-full h-full", "flex items-center") do %>
           <%= turbo_stream_from dom_id(roll.side.die) %>
           <%= tag.div id: dom_id(roll.side.die), class: "w-full text-gray-900" do %>
-            <%= render partial: "rolls/roll", locals: {roll: roll} %>
+            <%= render partial: "rolls/roll", locals: {roll: roll, data: {idea_form_target: "input"}} %>
           <% end %>
         <% end %>
       <% end %>

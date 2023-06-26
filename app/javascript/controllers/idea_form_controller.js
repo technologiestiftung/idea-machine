@@ -5,6 +5,13 @@ import { Controller } from "@hotwired/stimulus";
  * we set a loading message. This is not an ideal implementation, but for now it's okay.
  */
 export default class extends Controller {
+  static targets = ["input"];
+
+  inputTargetConnected(element) {
+    console.log("Connected");
+    console.log(element);
+  }
+
   submit() {
     this.element.requestSubmit();
     this.showLoadingState();
