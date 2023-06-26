@@ -25,5 +25,5 @@
 }
 
 .turbo-progress-bar {
-  @apply bg-pink h-2;
+  @apply hidden;
 }
