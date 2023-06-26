@@ -3,6 +3,22 @@
 @tailwind utilities;
 
 @layer base {
+  @font-face {
+    font-family: "National";
+    font-style: normal;
+    font-weight: 400;
+    src: local("National-Regular");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "National";
+    font-style: normal;
+    font-weight: 800;
+    src: local("National-Extrabold");
+    font-display: swap;
+  }
+
   body {
     @apply text-gray-900 antialiased;
   }
