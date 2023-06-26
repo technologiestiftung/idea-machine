@@ -1,4 +1,4 @@
-<%= render(DieComponent.new(theme: roll.side.die.title, id: dom_id(roll))) do |component| %>
+<%= render(DieComponent.new(theme: roll.side.die.title, id: dom_id(roll), data: { **local_assigns[:data] || {} } )) do |component| %>
   <% component.with_hidden_input_field do %>
     <input type="hidden" autocomplete="off" value="<%= roll.id %>" name="idea[roll_ids][]">
   <% end %>
