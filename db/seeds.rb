@@ -25,7 +25,7 @@ TOPICS = [
 ]
 
 TOPICS.each_with_index do |topic, idx|
-  Side.create! die: topic_die, title: topic, shortcode: idx + 1
+  Side.create! die: topic_die, title: topic[:title], variations: topic[:variations], shortcode: idx + 1
 end
 
 medium_die = Die.create! title: "medium", shortcode: "C"
@@ -40,5 +40,5 @@ MEDIA = [
 ]
 
 MEDIA.each_with_index do |medium, idx|
-  Side.create! die: medium_die, title: medium, shortcode: idx + 1
+  Side.create! die: medium_die, title: medium[:title], variations: medium[:variations], shortcode: idx + 1
 end
