@@ -2,7 +2,7 @@ require "test_helper"
 
 class SideTest < ActiveSupport::TestCase
   test "accepts side with valid attributes" do
-    side = Side.new(die: dice(:one), title: "Side note", shortcode: 2)
+    side = Side.new(die: dice(:one), title: "Side note", variations: ["sn", "note", "sidenote"], shortcode: 2)
     assert side.valid?
   end
 
