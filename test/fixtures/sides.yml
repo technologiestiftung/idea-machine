@@ -1,6 +1,10 @@
 one:
   die: one
   title: "Verwaltung"
+  variations:
+    - "Berliner Verwaltung"
+    - "Public Administration"
+    - "Öffentliche Verwaltung"
   shortcode: 1
 
 two:
