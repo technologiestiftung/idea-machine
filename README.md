@@ -6,33 +6,39 @@ Web app that creates ChatGPT-generated ideas for the digitalization of Berlin. T
 
 The app works in combination with the [code for the Arduino boards](https://github.com/technologiestiftung/idea-machine-dice/).
 
-We curate the possible roll values via a comination of dice and sides, as they are present in the database (see the seeds in `db/seeds.rb`). Valid shortcodes to be posted are currently:
+We curate the possible roll values via a combination of dice and sides, as they are present in the database (see the seeds in `db/seeds.rb`). Valid shortcodes to be posted are currently:
 
 ```plain
 [Focus group]
 A1 = Berliner Bürger:innen
-A2 = Kinder
-A3 = Verwaltungs-Angestellte
-A4 = Senior:innen
-A5 = Familien
-A6 = Nachtschwärmer
+A2 = Unternehmen
+A3 = Verwaltung
+A4 = Familien
+A5 = Junge Menschen
+A6 = ?
 
 [Topic]
 B1 = Soziales Miteinander
-B2 = Mobilität
-B3 = Gesundheit
-B4 = Stadtentwicklung
-B5 = Wohnen
-B6 = Energie und Umwelt
+B2 = Kultur & Freizeit
+B3 = Wohnen & Energie
+B4 = Bildung
+B5 = Mobilität & Verkehr
+B6 = ?
 
 [Medium]
-C1 = Web-App
-C2 = mobile App
-C3 = API
-C4 = Künstliche Intelligenz
-C5 = Virtual Reality
-C6 = IoT
+C1 = Website & App
+C2 = Öffentlicher Raum
+C3 = Social Media Kanal
+C4 = Virtual & Augmented Reality
+C5 = IoT
+C6 = ?
 ```
+
+Each die has a "surprise" side, marked with a question tag. This side will pick a random term to be included in the idea generation prompt.
+
+Also, some of the labels have a "shadow" label, which means that not the exact term is sent to the idea generation service, but a modified, more specific one.
+
+See details for all this in `db/seeds.rb`.
 
 ## Requirements
 
