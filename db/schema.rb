@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_16_072710) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_27_115856) do
   create_table "dice", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_072710) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "shortcode", null: false
+    t.text "variations"
     t.index ["die_id"], name: "index_sides_on_die_id"
     t.index ["shortcode", "die_id"], name: "index_sides_on_shortcode_and_die_id", unique: true
   end
