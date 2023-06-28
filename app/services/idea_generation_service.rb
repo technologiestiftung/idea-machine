@@ -15,16 +15,6 @@ class IdeaGenerationService
       in einer Zeile beschrieben wird. Themenfeld: #{topic}, Zielgruppe #{focus_group} Medium: #{medium}. Ein bisschen futuristisch und witzig kann die die Antwort auch sein. Die Antwort soll so formatiert sein: "Titel": Beschreibung
     PROMPT
 
-    openai_client = OpenAI::Client.new(access_token: Rails.application.credentials.openai_token)
-
-    response = openai_client.chat(
-      parameters: {
-        model: "gpt-3.5-turbo",
-        messages: [{role: "user", content: prompt}],
-        temperature: 0.7
-      }
-    )
-
-    response.dig("choices", 0, "message", "content")
+    TextGenerationService.new(prompt).call
   end
 end
