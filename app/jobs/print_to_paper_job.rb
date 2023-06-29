@@ -6,6 +6,7 @@ class PrintToPaperJob < ApplicationJob
       print_command = <<~COMMAND
         echo 'Betreff: Idee
         Von: Ideenwürfel
+        An: idee@ts.berlin
         ------------------
         #{text}' | fold -w 18 -s | lp -d POS-58-Series
       COMMAND
