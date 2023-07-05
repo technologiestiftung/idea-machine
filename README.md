@@ -4,6 +4,8 @@ Web app that creates ChatGPT-generated ideas for the digitalization of Berlin. T
 
 ![Technical setup of the app](/public/idea-machine-setup.png)
 
+![Physical setup of the project](/public/idea-machine-irl.png)
+
 The app works in combination with the [code for the Arduino boards](https://github.com/technologiestiftung/idea-machine-dice/).
 
 We curate the possible roll values via a combination of dice and sides, as they are present in the database (see the seeds in `db/seeds.rb`). Valid shortcodes to be posted are currently:
