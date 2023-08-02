@@ -53,11 +53,6 @@ gem "bootsnap", require: false
 
 gem "ruby-openai"
 
-# Net::SSH stuff
-gem "net-ssh", "~> 7.1"
-gem "ed25519", "~> 1.3"
-gem "bcrypt_pbkdf", "~> 1.1"
-
 # Componet-based views
 gem "view_component"
 
