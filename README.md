@@ -96,7 +96,9 @@ The app will be available at http://localhost:3000
 
 ## Deployment
 
-This app is deployed to [fly.io](https://fly.io). The initial setup will most likely already be done. If not, follow the steps below.
+This app is deployed to [fly.io](https://fly.io).
+
+> **Important**: The initial setup will most likely already be done, however we currently don't have a continuous deployment set up. You will need to manually run `fly deploy` for new dployments.
 
 First, follow the [docs for deploying a Rails app](https://fly.io/docs/rails/getting-started/existing/) and for [using SQLite3](https://fly.io/docs/rails/advanced-guides/sqlite3/) as a database.
 
