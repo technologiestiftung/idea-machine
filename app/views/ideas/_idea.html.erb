@@ -1,4 +1,4 @@
-<%= tag.div id: "idea", class: local_assigns[:class], data: {controller: "localhost-post", localhost_post_body_value: local_assigns[:text]} do %>
+<%= tag.div id: "idea", class: local_assigns[:class], data: {controller: "localhost-post", localhost_post_body_value: local_assigns[:text], localhost_post_token_value: Rails.application.credentials.printing_server.publicly_visible_token} do %>
   <% if idea.present? %>
     <%= tag.p idea.description, class: "text-3xl" %>
   <% end %>

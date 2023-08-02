@@ -10,6 +10,7 @@ export default class extends Controller {
       type: String,
       default: "",
     },
+    token: String,
     body: Object,
   };
 
@@ -22,6 +23,7 @@ export default class extends Controller {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${this.tokenValue}`,
       },
       body: JSON.stringify(this.bodyValue),
     });
