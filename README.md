@@ -148,4 +148,4 @@ The important bit in the request is the shortcode payload that is sent. As of no
 
 ## Printing
 
-The purpose of the app is to physically print a generated idea with a small label printer. We do this by opening the deployed Rails app in a browser. When a new idea is created, [some JavaScript](/app/javascript/controllers/localhost_post_controller.js) is executed on the Raspberry Pi that hosts the _local_ setup. A local server on the Pi executes the print job then.
+The purpose of the app is to physically print a generated idea with a small label printer. We do this by opening the deployed Rails app in a browser. When a new idea is created, [some JavaScript](/app/javascript/controllers/localhost_post_controller.js) is executed on the Raspberry Pi that hosts the _local_ setup. A [local server on the Pi](https://github.com/technologiestiftung/idea-machine-printing-server) executes the print job then.
