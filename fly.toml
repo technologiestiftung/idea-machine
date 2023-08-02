@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for idea-machine on 2023-06-15T15:09:20+02:00
+# fly.toml app configuration file generated for idea-machine on 2023-08-02T14:34:00+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -6,6 +6,8 @@
 app = "idea-machine"
 console_command = "/rails/bin/rails console"
 primary_region = "ams"
+
+[build]
 
 [[mounts]]
 destination = "/mnt/idea_machine_production"
