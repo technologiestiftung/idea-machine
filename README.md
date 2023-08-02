@@ -2,7 +2,7 @@
 
 Web app that creates ChatGPT-generated ideas for the digitalization of Berlin. The ideas are explicitly semi-serious and are intended as a conversation starter. The ideas are generated from physical die rolls that emit their result side and POST it to the web app. Each side is associated with a term such as "Web-App", "Gesundheit", etc. that serves as input to the idea generation.
 
-![Technical setup of the app](/public/idea-machine-setup.png)
+![Technical setup of the app](/public/idea-machine-setup-v2.png)
 
 ![Physical setup of the project](/public/idea-machine-irl.png)
 
@@ -96,7 +96,7 @@ The app will be available at http://localhost:3000
 
 ## Deployment
 
-This app is primarily developed for a local exhibition context. It is therefore to be deployed locally on a Raspberyy Pi.
+This app is primarily developed for a local exhibition context. It is therefore to be deployed locally on a Raspberry Pi.
 
 ### Raspberry Pi Setup
 
@@ -231,6 +231,4 @@ Once the app is deployed to Fly, we currently manually ran `fly ssh console -C "
 
 ## Printing
 
-The purpose of the app is to physically print a genrated idea with a small label printer. The printer is connected to a Raspberry Pi (not the one that hosts the app!) with a 32bit system. This is because the driver for the printer doesn't work with the Raspberry Pi OS 64bit which hosts this app.
-
-Technically we solve this by running a Rails job in idea creation. The job SSHs into the Raspberry Pi for the printer and executes the print command with the generated idea as a text input. Find details for this in `app/jobs/print_to_paper_job.rb`.
+The purpose of the app is to physically print a generated idea with a small label printer. We do this by opening the deployed Rails app in a browser. When a new idea is created, [some JavaScript](/app/javascript/controllers/localhost_post_controller.js) is executed on the Raspberry Pi that hosts the _local_ setup. A local server on the Pi executes the print job then.
