@@ -96,114 +96,37 @@ The app will be available at http://localhost:3000
 
 ## Deployment
 
-This app is primarily developed for a local exhibition context. It is therefore to be deployed locally on a Raspberry Pi.
+This app is deployed to [fly.io](https://fly.io). The initial setup will most likely already be done. If not, follow the steps below.
 
-### Raspberry Pi Setup
+First, follow the [docs for deploying a Rails app](https://fly.io/docs/rails/getting-started/existing/) and for [using SQLite3](https://fly.io/docs/rails/advanced-guides/sqlite3/) as a database.
 
-We set up the app on a Rapberry Pi 4 Model B with 4GB RAM. Make sure that you install the 64bit version of the Raspberry Pi OS.
+Once the app is deployed, you need to manually run `fly ssh console -C "/rails/bin/rails db:seed"` to seed the database with the initial dice data.
 
-The first steps will be to install our required system dependencies. We then proceed to install and start the Rails app.
+### Other useful commands
 
-#### Installing Ruby
+In the lifecycle of the app, you might find the following commands useful.
 
-We want to install and configure Ruby through a version manager (`rbenv`):
-
-```bash
-sudo apt-get install rbenv
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> .bashrc
-echo 'eval "$(rbenv init -)"' >> .bashrc
-```
-
-We then need to install the `ruby-build` plugin in order to access our Ruby versions:
+#### Sclaing your app server
 
 ```bash
-git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+fly scale vm shared-cpu-2x
 ```
 
-We can now inspect the available versions via:
+> Replace `shared-cpu-2x` with your desired size.
+
+#### Extending/scaling the SQLite3 volume
 
 ```bash
-rbenv install --list
+flyctl volumes extend vol_1234
 ```
 
-Before installing our Ruby version, we need to install `libyaml-dev` as a dependency:
+> Replace `vol_1234` with the name of the actual volume.
 
-```bash
-sudo apt-get install libyaml-dev
-```
+Always refer to the [fly.io API reference](https://fly.io/docs/reference/) for the latest version of all these commands.
 
-Now we can install our desired Ruby version (defined in `.ruby-version`, `3.2.0` as of now).
+## Interacting with the app
 
-```bash
-rbenv install 3.2.0
-```
-
-#### Installing SQLite3
-
-```bash
-sudo apt-get install sqlite3
-```
-
-Ensure this worked by inspecting `sqlite3 --version`
-
-#### Installing Redis
-
-```bash
-sudo apt-get install redis-server
-```
-
-That's it. For me, Redis was started automatically. If it isn't try running `sudo systemctl enable redis` and then `sudo systemctl start redis`.
-
-#### Setup app
-
-Git should already be installed on the Raspberry Pi. So getting the code should be as simple as (specify a different directory if you prefer):
-
-```bash
-git clone https://github.com/technologiestiftung/idea-machine.git
-```
-
-Install dependencies:
-
-```bash
-bundle install
-```
-
-Create a file for the Rails master key (used for decrypting credentials):
-
-```bash
-touch config/master.key
-```
-
-This is a simple text file. Write the master key into that file. You can find it in our shared password vault. The key is a combination of letters and digits.
-
-Now create and migrate the database:
-
-```bash
-RAILS_ENV=production bin/rails db:create
-RAILS_ENV=production bin/rails db:migrate
-```
-
-Seed the database with the dice and sides and keywords:
-
-```bash
-RAILS_ENV=production bin/rails db:seed
-```
-
-We also need to precompile our assets (at the moment this is only our Tailwind CSS):
-
-```bash
-RAILS_ENV=production bin/rails assets:precompile
-```
-
-Then, we spin up the Rails server and make it available for devices on the same network:
-
-```bash
-RAILS_ENV=production RAILS_SERVE_STATIC_FILES=true bin/rails s -b 0.0.0.0
-```
-
-The app will be available at http://0.0.0.0:3000
-
-You can now POST your dice roll results from other devices like so:
+Once the app is deployed, you can POST your dice roll results from other devices like so:
 
 ```bash
 curl \
@@ -212,7 +135,7 @@ curl \
   -H "Authorization: Bearer {TOKEN-YOU-SET-IN-CREDENTIALS}" \
   -X POST \
   -d 'shortcode=C3' \
-  {HOSTNAME-OR-IP-OF-YOUR-RASPBERRY-PI}:3000/api/v1/rolls
+  {DEPLOYMENT-URL}/api/v1/rolls
 ```
 
 Please replace the values in curly braces (and the curly braces!) with the actual values provided in our password vault.
@@ -220,14 +143,6 @@ Please replace the values in curly braces (and the curly braces!) with the actua
 The important bit in the request is the shortcode payload that is sent. As of now, we have agreed that all dice emit their result via a mapping of A-C for the die and 1-6 for the result side. This means that currently the shortcodes `A{1-6}`, `B{1-6}`, and `C{1-6}` are valid. All other combinations will be rejected by the app.
 
 > Note that it is not necessary to include a timestamp in the request body as the timestamp is set on the application server.
-
-### Fly.io
-
-For testing and debugging reasons, we also deployed an instance to Fly.io.
-
-Follow their [docs for deploying a Rails app](https://fly.io/docs/rails/getting-started/existing/) and for [using SQLite3](https://fly.io/docs/rails/advanced-guides/sqlite3/) as a database.
-
-Once the app is deployed to Fly, we currently manually ran `fly ssh console -C "/rails/bin/rails db:seed"` to seed the database with the initial dice data.
 
 ## Printing
 
