@@ -1,2 +1,2 @@
-<%= turbo_stream.replace "idea", @idea %>
+<%= turbo_stream.replace "idea", partial: "ideas/idea", locals: { idea: @idea, text: JsonService.new(input: {message: @idea.description}).generate} %>
 <%= turbo_stream.replace "spinner", SpinnerComponent.new(id: "spinner", class: "hidden") %>
