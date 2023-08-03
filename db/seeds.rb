@@ -2,11 +2,11 @@ focus_group_die = Die.create! title: "focus_group", shortcode: "A"
 
 FOCUS_GROUPS = [
   {title: "Berliner Bürger:innen"},
-  {title: "Unternehmen"},
-  {title: "Verwaltung", variations: ["Mitarbeitende der Berliner Verwaltung"]},
+  {title: "Wissenschaft", variations: ["Wissenschaftler:innen"]},
+  {title: "Verwaltung", variations: ["Verwaltungsangestellte"]},
   {title: "Familien"},
-  {title: "Junge Menschen"},
-  {title: "?", variations: ["Senior:innen", "Benachteiligte Menschen", "Verliebte", "Füchse", "Such dir eine aus"]}
+  {title: "Aktivist:innen"},
+  {title: "?", variations: ["Benachteiligte Menschen", "Verliebte", "Füchse", "Such dir eine aus"]}
 ]
 
 FOCUS_GROUPS.each_with_index do |focus_group, idx|
@@ -16,12 +16,12 @@ end
 topic_die = Die.create! title: "topic", shortcode: "B"
 
 TOPICS = [
-  {title: "Soziales Miteinander"},
-  {title: "Kultur & Freizeit"},
-  {title: "Wohnen & Energie"},
-  {title: "Bildung"},
+  {title: "Klimaschutz"},
+  {title: "Biodiversität"},
+  {title: "Stadtgrün"},
   {title: "Mobilität & Verkehr"},
-  {title: "?", variations: ["Gesundheit", "Ernährung", "Umwelt", "Nachhaltigkeit", "Such dir eins aus"]}
+  {title: "Wohnen & Energie"},
+  {title: "?", variations: ["Kreislaufwirtschaft", "Luft- und Gewässerschutz", "Umweltverschmutzung", "Umweltbildung", "Such dir eins aus"]}
 ]
 
 TOPICS.each_with_index do |topic, idx|
@@ -33,10 +33,10 @@ medium_die = Die.create! title: "medium", shortcode: "C"
 MEDIA = [
   {title: "Website & App"},
   {title: "Öffentlicher Raum"},
-  {title: "Social Media Kanal"},
+  {title: "Kunstinstallation"},
   {title: "Virtual & Augmented Reality"},
   {title: "IoT"},
-  {title: "?", variations: ["Kunstinstallation", "Theaterstück", "Oper", "Petition", "Such dir eins aus"]}
+  {title: "?", variations: ["Theaterstück", "Bürgerinitiative", "Petition", "Social Media Kanal", "Such dir eins aus"]}
 ]
 
 MEDIA.each_with_index do |medium, idx|
