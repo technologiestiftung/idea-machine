@@ -12,4 +12,20 @@ class SideTest < ActiveSupport::TestCase
     assert side.errors[:title].present?
     assert side.errors[:shortcode].present?
   end
+
+  test "creates roll if side is first of die" do
+    die = Die.create(title: 1, shortcode: "X")
+    side = Side.create(die: die, title: "first", shortcode: "1")
+
+    assert_equal side.rolls.size, 1
+  end
+
+  test "does not create roll if die already has rolls from another side" do
+    die = Die.create(title: 1, shortcode: "X")
+    Side.create(die: die, title: "first", shortcode: "1")
+
+    second_side = Side.create(die: die, title: "second", shortcode: "2")
+
+    assert second_side.rolls.empty?
+  end
 end
