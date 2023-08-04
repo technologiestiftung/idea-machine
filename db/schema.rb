@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_27_115856) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_04_130953) do
   create_table "dice", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "shortcode", null: false
     t.integer "title"
     t.index ["shortcode"], name: "index_dice_on_shortcode", unique: true
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "title", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ideas", force: :cascade do |t|
