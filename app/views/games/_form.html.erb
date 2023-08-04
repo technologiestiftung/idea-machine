@@ -1,0 +1,52 @@
+<%= form_with(model: game) do |form| %>
+  <div class="mt-5">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <fieldset class="mt-5">
+    <legend>Zielgruppe</legend>
+    <%= form.fields_for :dice, game do |dice_form| %>
+      <div>
+        <%= dice_form.label :title %>
+        <%= dice_form.text_field :title, value: "focus_group" %>
+      </div>
+      <div>
+        <%= dice_form.label :shortcode %>
+        <%= dice_form.text_field :shortcode, value: "Xxxx" %>
+      </div>
+    <% end %>
+  </fieldset>
+
+  <fieldset class="mt-5">
+    <legend>Thema</legend>
+    <%= form.fields_for :dice, game do |dice_form| %>
+      <div>
+        <%= dice_form.label :title %>
+        <%= dice_form.text_field :title, value: "topic" %>
+      </div>
+      <div>
+        <%= dice_form.label :shortcode %>
+        <%= dice_form.text_field :shortcode, value: "Yyyy" %>
+      </div>
+    <% end %>
+  </fieldset>
+
+  <fieldset class="mt-5">
+    <legend>Medium</legend>
+    <%= form.fields_for :dice, game do |dice_form| %>
+      <div>
+        <%= dice_form.label :title %>
+        <%= dice_form.text_field :title, value: "medium" %>
+      </div>
+      <div>
+        <%= dice_form.label :shortcode %>
+        <%= dice_form.text_field :shortcode, value: "Zzzz" %>
+      </div>
+    <% end %>
+  </fieldset>
+
+  <div class="flex justify-end">
+    <%= form.submit class: 'button button-primary button-medium' %>
+  </div>
+<% end %>

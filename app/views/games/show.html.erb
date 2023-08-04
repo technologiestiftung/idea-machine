@@ -1,0 +1,25 @@
+<% content_for :header_title do %>
+  <%= tag.span @game.title %>
+<% end %>
+
+<%= tag.div class: class_names("w-full max-w-screen-lg mx-auto", "px-8 pt-0", "flex items-center") do %>
+  <% if @latest_rolls.present? %>
+    <%= form_with(model: Idea.new, class: class_names("w-full h-full", "grid grid-cols-3 gap-12"), data: { controller: "idea-form", idea_form_timer_value: @timer, action: "keydown.right@window->idea-form#submit keydown.left@window->idea-form#submit keydown.up@window->idea-form#submit keydown.down@window->idea-form#submit" }) do |form| %>
+      <% @latest_rolls.each do |roll| %>
+        <%= tag.div class: class_names("w-full h-full", "flex items-center") do %>
+          <%= turbo_stream_from dom_id(roll.side.die) %>
+          <%= tag.div id: dom_id(roll.side.die), class: "w-full text-gray-900" do %>
+            <%= render partial: "rolls/roll", locals: {roll: roll, data: {idea_form_target: "input"}} %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+<%= tag.div class: "px-8 pt-0 pb-20" do %>
+  <%= render FrameComponent.new(class: "h-full") do %>
+    <%= turbo_stream_from "idea-stream" %>
+    <%= render partial: "ideas/idea_placeholder" %>
+  <% end %>
+<% end %>
+

@@ -1,0 +1,11 @@
+<%= tag.div class: class_names("w-full max-w-screen-lg mx-auto", "px-8 pt-0") do %>
+  <%= tag.h1 "Alle Spiele", class: "text-4xl font-bold mb-8" %>
+  <%= tag.ul class: "my-6" do %>
+    <% @games.each do |game| %>
+      <%= tag.li do %>
+        <%= link_to game.title, game_path(game), class: "underline" %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= link_to "Neues Spiel anlegen", new_game_path, class: "underline" %>
+<% end %>
