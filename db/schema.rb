@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_04_130953) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_04_132630) do
   create_table "dice", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "shortcode", null: false
     t.integer "title"
+    t.integer "game_id"
+    t.index ["game_id"], name: "index_dice_on_game_id"
     t.index ["shortcode"], name: "index_dice_on_shortcode", unique: true
   end
 
@@ -54,6 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_04_130953) do
     t.index ["shortcode", "die_id"], name: "index_sides_on_shortcode_and_die_id", unique: true
   end
 
+  add_foreign_key "dice", "games"
   add_foreign_key "rolls", "sides"
   add_foreign_key "sides", "dice"
 end
