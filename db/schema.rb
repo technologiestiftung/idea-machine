@@ -10,15 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_04_132630) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_05_105911) do
   create_table "dice", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "shortcode", null: false
     t.integer "title"
-    t.integer "game_id"
-    t.index ["game_id"], name: "index_dice_on_game_id"
-    t.index ["shortcode"], name: "index_dice_on_shortcode", unique: true
+    t.integer "game_id", null: false
+    t.index ["shortcode", "game_id"], name: "index_dice_on_shortcode_and_game_id", unique: true
   end
 
   create_table "games", force: :cascade do |t|
