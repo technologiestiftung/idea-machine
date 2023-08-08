@@ -15,7 +15,7 @@ export default class extends Controller {
   };
 
   connect() {
-    this.hasBodyValue && this.sendRequest();
+    this.sendRequest();
   }
 
   sendRequest() {
@@ -25,7 +25,7 @@ export default class extends Controller {
         "Content-Type": "application/json",
         Authorization: `Bearer ${this.tokenValue}`,
       },
-      body: JSON.stringify(this.bodyValue),
+      body: this.hasBodyValue ? JSON.stringify(this.bodyValue) : null,
     });
   }
 
