@@ -8,4 +8,8 @@ Rails.application.routes.draw do
       resources :rolls, only: [:create]
     end
   end
+
+  namespace :raspi do
+    get "shutdown", to: "shutdowns#show"
+  end
 end
