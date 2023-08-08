@@ -1,5 +1,5 @@
 <%= tag.div class: "flex justify-center items-center" do %>
-  <%= tag.div data: {controller: "localhost-post", localhost_post_path_value: "/shutdown"}, class: "text-center" do %>
+  <%= tag.div data: {controller: "localhost-post", localhost_post_path_value: "/shutdown", localhost_post_token_value: Rails.application.credentials.raspi_server.publicly_visible_token}, class: "text-center" do %>
     <%= tag.h1 "Raspberry Pi wird heruntergefahren", class: "font-bold text-5xl" %>
     <%= tag.p "Dies kann bis zu einer Minute dauern", class: "text-3xl" %>
   <% end %>
