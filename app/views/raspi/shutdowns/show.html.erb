@@ -1,0 +1,6 @@
+<%= tag.div class: "flex justify-center items-center" do %>
+  <%= tag.div data: {controller: "localhost-post", localhost_post_path_value: "/shutdown"}, class: "text-center" do %>
+    <%= tag.h1 "Raspberry Pi wird heruntergefahren", class: "font-bold text-5xl" %>
+    <%= tag.p "Dies kann bis zu einer Minute dauern", class: "text-3xl" %>
+  <% end %>
+<% end %>
