@@ -1,0 +1,4 @@
+<%= tag.div class: "fixed top-0 left-0 invisible" do %>
+  <%= turbo_stream_from "shutdowns" %>
+  <%= tag.div id: "shutdowns-listener" %>
+<% end %>
