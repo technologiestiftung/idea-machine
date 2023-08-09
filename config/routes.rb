@@ -10,4 +10,6 @@ Rails.application.routes.draw do
       resources :rolls, only: [:create]
     end
   end
+
+  get "raspi/shutdown", to: "raspi#shutdown"
 end
