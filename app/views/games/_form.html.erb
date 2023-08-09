@@ -1,52 +1,51 @@
-<%= form_with(model: game) do |form| %>
-  <div class="mt-5">
+<%= form_with(model: game, class: "grid gap-6 grid-cols-3 items-start") do |form| %>
+  <div class="col-span-3 grid gap-y-1">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: "w-full" %>
+    <% if game.errors.key?(:title) %>
+      <ul class="text-danger mt-1">
+        <% game.errors.full_messages_for(:title).each do |error_message| %>
+        <%= tag.li class: "text-warning" do %>
+          ⚠ <%= error_message %>
+        <% end %>
+        <% end %>
+      </ul>
+    <% end %>
   </div>
 
-  <fieldset class="mt-5">
-    <legend>Zielgruppe</legend>
-    <%= form.fields_for :dice, game do |dice_form| %>
-      <div>
-        <%= dice_form.label :title %>
-        <%= dice_form.text_field :title, value: "focus_group" %>
-      </div>
-      <div>
-        <%= dice_form.label :shortcode %>
-        <%= dice_form.text_field :shortcode, value: "Xxxx" %>
-      </div>
-    <% end %>
-  </fieldset>
+  <% valid_die_values.each_with_index do |obj, index| %>
+    <%= tag.div class: "grid gap-y-6" do %>
+      <%= form.fields_for "dice_attributes[#{index + 1}]", Die.new do |die_form| %>
+        <%= die_form.hidden_field :title, value: obj[:title] %>
+        <%= die_form.hidden_field :shortcode, value: obj[:shortcode] %>
 
-  <fieldset class="mt-5">
-    <legend>Thema</legend>
-    <%= form.fields_for :dice, game do |dice_form| %>
-      <div>
-        <%= dice_form.label :title %>
-        <%= dice_form.text_field :title, value: "topic" %>
-      </div>
-      <div>
-        <%= dice_form.label :shortcode %>
-        <%= dice_form.text_field :shortcode, value: "Yyyy" %>
-      </div>
-    <% end %>
-  </fieldset>
+        <%= tag.div class: "scale-75" do %>
+          <%= render DieComponent.new(theme: obj[:title]) do %>
+            <%= obj[:title] %>
+          <% end %>
+        <% end %>
 
-  <fieldset class="mt-5">
-    <legend>Medium</legend>
-    <%= form.fields_for :dice, game do |dice_form| %>
-      <div>
-        <%= dice_form.label :title %>
-        <%= dice_form.text_field :title, value: "medium" %>
-      </div>
-      <div>
-        <%= dice_form.label :shortcode %>
-        <%= dice_form.text_field :shortcode, value: "Zzzz" %>
-      </div>
+        <% 6.times do |index| %>
+          <%= die_form.fields_for "sides_attributes[#{index + 1}]", Side.new do |sides_form| %>
+            <%= tag.div class: "grid" do %>
+              <%= sides_form.label :title, class: class_names("sr-only", {"not-sr-only": index == 0}) %>
+              <%= sides_form.text_field :title, class: "w-full" %>
+              <%= sides_form.hidden_field :shortcode, value: index + 1 %>
+              <details class="pt-1 pb-3 px-3 open:bg-gray-100">
+                <summary class="text-gray-700">Variationen</summary>
+                <div>
+                  <%= sides_form.text_field :variations, class: "w-full", aria_describedby: "variationsHint" %>
+                  <%= tag.span "Bitte separariert mit Semikolon (;)", id: "variationsHint", class: "text-sm" %>
+                </div>
+              </details>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
     <% end %>
-  </fieldset>
+  <% end %>
 
-  <div class="flex justify-end">
-    <%= form.submit class: 'button button-primary button-medium' %>
+  <div>
+    <%= form.submit "Spiel erstellen", class: "bg-gray-900 text-white p-3 uppercase font-bold cursor-pointer" %>
   </div>
 <% end %>

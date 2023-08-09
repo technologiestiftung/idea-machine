@@ -16,12 +16,11 @@ class GamesController < ApplicationController
   end
 
   def new
+    @game = Game.new
   end
 
   def create
     @game = Game.new(game_params)
-
-    debugger
 
     respond_to do |format|
       if @game.save
@@ -39,6 +38,6 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:title, dice_attributes: [:title, :shortcode])
+    params.require(:game).permit(:title, dice_attributes: [:title, :shortcode, sides_attributes: [:title, :shortcode]])
   end
 end
