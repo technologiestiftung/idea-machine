@@ -9,7 +9,5 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :raspi do
-    get "shutdown", to: "shutdowns#show"
-  end
+  get "raspi/shutdown", to: "raspi#shutdown"
 end
