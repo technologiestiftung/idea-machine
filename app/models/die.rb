@@ -1,6 +1,6 @@
 class Die < ApplicationRecord
   VALID_SHORTCODES = ["A", "B", "C"]
-  belongs_to :game, optional: true
+  belongs_to :game
   has_many :sides, dependent: :destroy
   accepts_nested_attributes_for :sides
   has_many :rolls, through: :sides

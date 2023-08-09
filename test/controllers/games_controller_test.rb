@@ -1,23 +1,30 @@
 require "test_helper"
 
 class GamesControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get games_index_url
+  test "shows games index page" do
+    get games_url
     assert_response :success
   end
 
-  test "should get show" do
-    get games_show_url
+  test "shows game page" do
+    get game_url(games(:summer))
     assert_response :success
   end
 
-  test "should get new" do
-    get games_new_url
+  test "shows new game page" do
+    get new_game_url
     assert_response :success
   end
 
-  test "should get create" do
-    get games_create_url
-    assert_response :success
+  test "creates game" do
+    assert_difference("Game.count") do
+      post games_url, params: {game: {title: "Test game"}}
+    end
+  end
+
+  test "rejects game without title" do
+    assert_no_difference("Game.count") do
+      post games_url, params: {game: {title: nil}}
+    end
   end
 end

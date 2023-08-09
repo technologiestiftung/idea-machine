@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "pages#home"
+  root "games#index"
 
   resources :games, only: [:index, :show, :new, :create]
 
@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :rolls, only: [:create]
+    end
+    namespace :v2 do
+      resources :games, only: [:show] do
+        resources :rolls, only: [:create]
+      end
     end
   end
 

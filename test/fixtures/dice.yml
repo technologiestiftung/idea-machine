@@ -1,15 +1,19 @@
 one:
   title: "focus_group"
   shortcode: "A"
+  game: summer
 
 two:
   title: "topic"
   shortcode: "B"
+  game: summer
 
 three:
   title: "medium"
   shortcode: "C"
+  game: summer
 
 unused:
   title: "vegetables"
   shortcode: "Z"
+  game: summer
