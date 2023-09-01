@@ -13,24 +13,24 @@ We curate the possible roll values via a combination of dice and sides, as they 
 ```plain
 [Focus group]
 A1 = Berliner Bürger:innen
-A2 = Unternehmen
+A2 = Wissenschaft
 A3 = Verwaltung
 A4 = Familien
-A5 = Junge Menschen
+A5 = Aktivist:innen
 A6 = ?
 
 [Topic]
-B1 = Soziales Miteinander
-B2 = Kultur & Freizeit
-B3 = Wohnen & Energie
-B4 = Bildung
-B5 = Mobilität & Verkehr
+B1 = Klimaschutz
+B2 = Biodiversität
+B3 = Stadtgrün
+B4 = Mobilität & Verkehr
+B5 = Wohnen & Energie
 B6 = ?
 
 [Medium]
 C1 = Website & App
 C2 = Öffentlicher Raum
-C3 = Social Media Kanal
+C3 = Kunstinstallation
 C4 = Virtual & Augmented Reality
 C5 = IoT
 C6 = ?
