@@ -1,4 +1,5 @@
 class Die < ApplicationRecord
+  belongs_to :game, optional: true
   has_many :sides, dependent: :destroy
   has_many :rolls, through: :sides
 
