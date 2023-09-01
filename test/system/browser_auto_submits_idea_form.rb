@@ -6,7 +6,7 @@ class BrowserAutoSubmitsIdeaTest < ApplicationSystemTestCase
   test "auto-submits idea form after 3s timeout" do
     stub_idea
 
-    visit "/?timer=3"
+    visit "#{game_url(games(:summer))}/?timer=3"
 
     assert_text CREATED_IDEA_TEXT, wait: 10
   end
@@ -14,7 +14,7 @@ class BrowserAutoSubmitsIdeaTest < ApplicationSystemTestCase
   test "does not auto-submit idea form with invalid timer" do
     stub_idea
 
-    visit "/?timer=x"
+    visit "#{game_url(games(:summer))}/?timer=x"
 
     assert_no_text CREATED_IDEA_TEXT, wait: 10
   end
