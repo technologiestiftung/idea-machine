@@ -14,14 +14,14 @@ class SideTest < ActiveSupport::TestCase
   end
 
   test "creates roll if side is first of die" do
-    die = Die.create(title: 1, shortcode: "X")
+    die = Die.create(title: "focus_group", shortcode: "C", game: games(:fresh))
     side = Side.create(die: die, title: "first", shortcode: "1")
 
     assert_equal side.rolls.size, 1
   end
 
   test "does not create roll if die already has rolls from another side" do
-    die = Die.create(title: 1, shortcode: "X")
+    die = Die.create(title: "focus_group", shortcode: "B", game: games(:fresh))
     Side.create(die: die, title: "first", shortcode: "1")
 
     second_side = Side.create(die: die, title: "second", shortcode: "2")

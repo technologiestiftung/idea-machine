@@ -4,26 +4,14 @@ class Api::V1::RollsController < ApplicationController
   before_action :http_token_authenticate
 
   def create
-    die_shortcode, side_shortcode = roll_params[:shortcode].chars
-    die = Die.where(shortcode: die_shortcode)
-    side = Side.where(shortcode: side_shortcode.to_i).where(die: die).first
-
-    @roll = Roll.new(side: side)
-
     respond_to do |format|
-      if @roll.save
-        format.json { render json: @roll, status: :created }
-      else
-        format.json { render json: @roll.errors, status: :unprocessable_entity }
+      format.json do
+        render json: {hint: "This version of the API is no longer supported."}, status: :bad_request
       end
     end
   end
 
   private
-
-  def roll_params
-    params.permit(:shortcode)
-  end
 
   def http_token_authenticate
     authenticate_or_request_with_http_token do |token, options|
