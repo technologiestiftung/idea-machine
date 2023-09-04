@@ -13,6 +13,17 @@ three:
   shortcode: "C"
   game: summer
 
-unused:
-  title: "vegetables"
+four:
+  title: "focus_group"
+  shortcode: "A"
+  game: autumn
+
+five:
+  title: "topic"
+  shortcode: "B"
+  game: autumn
+
+six:
+  title: "medium"
   shortcode: "C"
+  game: autumn
