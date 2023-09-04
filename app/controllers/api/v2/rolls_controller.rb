@@ -5,7 +5,7 @@ class Api::V2::RollsController < ApplicationController
   before_action :set_game
 
   def create
-    die_shortcode, side_shortcode = roll_params[:shortcode].chars
+    die_shortcode, side_shortcode = roll_params[:shortcode]&.chars
     die = @game.dice.where(shortcode: die_shortcode)
     side = Side.where(shortcode: side_shortcode.to_i).where(die: die).first
 
