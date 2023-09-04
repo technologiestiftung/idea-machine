@@ -2,10 +2,9 @@ require "test_helper"
 
 class Api::V2::RollsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @game = games(:summer)
+    @game = games(:autumn)
     @roll = rolls(:one)
-    @valid_shortcode = "#{dice(:one).shortcode}#{sides(:one).shortcode}"
-    @invalid_shortcode = "#{dice(:one).shortcode}#{sides(:two).shortcode}" # Invalid because side does not belong to die
+    @valid_shortcode = "#{dice(:four).shortcode}#{sides(:five).shortcode}"
     @authorization = "Bearer #{Rails.application.credentials.http_token}"
   end
 
@@ -21,7 +20,7 @@ class Api::V2::RollsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "responds with status code :unprocessable_entity after unprocessable creation attempt" do
-    post api_v2_game_rolls_url(@game), params: {shortcode: @invalid_shortcode}, headers: {Authorization: @authorization}, as: :json
+    post api_v2_game_rolls_url(@game), params: {shortcode: nil}, headers: {Authorization: @authorization}, as: :json
     assert_response :unprocessable_entity
   end
 end

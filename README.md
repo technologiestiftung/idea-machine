@@ -92,7 +92,17 @@ Once the app is deployed, you need to manually run `fly ssh console -C "/rails/b
 
 In the lifecycle of the app, you might find the following commands useful.
 
-#### Sclaing your app server
+#### Restarting the app server
+
+This has become necessary a few times, because the connection between the app and the Redis server had timed out.
+
+```bash
+fly apps restart idea-machine
+```
+
+> Replace `idea-machine` with your app name on Fly.
+
+#### Scaling your app server
 
 ```bash
 fly scale vm shared-cpu-2x
