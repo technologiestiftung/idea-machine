@@ -1,0 +1,69 @@
+{
+  "game": {
+    "title": "Ideenwürfel beim Kiezlabor auf dem Tempelhofer Feld",
+    "dice": [
+      {
+        "title": "focus_group",
+        "shortcode": "A",
+        "sides": [
+          { "title": "Berliner Bürger:innen" },
+          { "title": "Wissenschaft", "variations": ["Wissenschaftler:innen"] },
+          { "title": "Verwaltung", "variations": ["Verwaltungsangestellte"] },
+          { "title": "Familien" },
+          { "title": "Aktivist:innen" },
+          {
+            "title": "?",
+            "variations": [
+              "Benachteiligte Menschen",
+              "Verliebte",
+              "Füchse",
+              "Such dir eine aus"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "topic",
+        "shortcode": "B",
+        "sides": [
+          { "title": "Klimaschutz" },
+          { "title": "Biodiversität" },
+          { "title": "Stadtgrün" },
+          { "title": "Mobilität & Verkehr" },
+          { "title": "Wohnen & Energie" },
+          {
+            "title": "?",
+            "variations": [
+              "Kreislaufwirtschaft",
+              "Luft- und Gewässerschutz",
+              "Umweltverschmutzung",
+              "Umweltbildung",
+              "Such dir eins aus"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "medium",
+        "shortcode": "C",
+        "sides": [
+          { "title": "Website & App" },
+          { "title": "Öffentlicher Raum" },
+          { "title": "Kunstinstallation" },
+          { "title": "Virtual & Augmented Reality" },
+          { "title": "IoT" },
+          {
+            "title": "?",
+            "variations": [
+              "Theaterstück",
+              "Bürgerinitiative",
+              "Petition",
+              "Social Media Kanal",
+              "Such dir eins aus"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

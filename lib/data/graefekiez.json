@@ -1,0 +1,73 @@
+{
+  "game": {
+    "title": "Ideenwürfel beim Kiezlabor im Graefekiez",
+    "dice": [
+      {
+        "title": "focus_group",
+        "shortcode": "A",
+        "sides": [
+          { "title": "Berliner Bürger:innen" },
+          {
+            "title": "Wissenschaft",
+            "variations": ["Wissenschaftler:innen"]
+          },
+          { "title": "Verwaltung", "variations": ["Verwaltungsangestellte"] },
+          { "title": "Kinder" },
+          { "title": "Marginalisierte Gruppen" },
+          {
+            "title": "?",
+            "variations": [
+              "Benachteiligte Menschen",
+              "Verliebte",
+              "Junge Menschen",
+              "Eichhörnchen",
+              "Such dir eine aus"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "topic",
+        "shortcode": "B",
+        "sides": [
+          { "title": "Ateliers & freie Räume" },
+          { "title": "Mobilität & Verkehr" },
+          { "title": "Wohnen" },
+          { "title": "Inklusion" },
+          { "title": "Öffentliche Plätze" },
+          {
+            "title": "?",
+            "variations": [
+              "Barrierefreiheit",
+              "Klimaschutz",
+              "Teilhabe & Co-Creation",
+              "Nachtleben",
+              "Such dir eins aus"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "medium",
+        "shortcode": "C",
+        "sides": [
+          { "title": "Website & App" },
+          { "title": "Veranstaltung" },
+          { "title": "Kunstinstallation" },
+          { "title": "Virtual & Augmented Reality" },
+          { "title": "IoT" },
+          {
+            "title": "?",
+            "variations": [
+              "Bürgerinitiative",
+              "Theaterstück & Performance",
+              "Aktion",
+              "Social Media Kanal",
+              "Such dir eins aus"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

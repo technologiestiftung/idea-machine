@@ -6,7 +6,7 @@ class OperatorCreatesIdeaTest < ApplicationSystemTestCase
   test "creating an idea via keydown ArrowUp" do
     stub_idea
 
-    visit "/"
+    visit game_url(games(:summer))
 
     send_keys(:up)
 
@@ -16,7 +16,7 @@ class OperatorCreatesIdeaTest < ApplicationSystemTestCase
   test "creating an idea via keydown ArrowRight" do
     stub_idea
 
-    visit "/"
+    visit game_url(games(:summer))
 
     send_keys(:right)
 
@@ -26,7 +26,7 @@ class OperatorCreatesIdeaTest < ApplicationSystemTestCase
   test "creating an idea via keydown ArrowDown" do
     stub_idea
 
-    visit "/"
+    visit game_url(games(:summer))
 
     send_keys(:down)
 
@@ -36,7 +36,7 @@ class OperatorCreatesIdeaTest < ApplicationSystemTestCase
   test "creating an idea via keydown ArrowLeft" do
     stub_idea
 
-    visit "/"
+    visit game_url(games(:summer))
 
     send_keys(:left)
 

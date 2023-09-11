@@ -24,39 +24,23 @@ Web app that creates ChatGPT-generated ideas for the digitalization of Berlin. T
 
 The app works in combination with the [code for the Arduino boards](https://github.com/technologiestiftung/idea-machine-dice/).
 
-We curate the possible roll values via a combination of dice and sides, as they are present in the database (see the seeds in `db/seeds.rb`). Valid shortcodes to be posted are currently:
+For every usage event of the physical dice, we create a new "game" in the app. You can create new games, along with all its required resources (dice, sides) like so:
 
-```plain
-[Focus group]
-A1 = Berliner Bürger:innen
-A2 = Unternehmen
-A3 = Verwaltung
-A4 = Familien
-A5 = Junge Menschen
-A6 = ?
-
-[Topic]
-B1 = Soziales Miteinander
-B2 = Kultur & Freizeit
-B3 = Wohnen & Energie
-B4 = Bildung
-B5 = Mobilität & Verkehr
-B6 = ?
-
-[Medium]
-C1 = Website & App
-C2 = Öffentlicher Raum
-C3 = Social Media Kanal
-C4 = Virtual & Augmented Reality
-C5 = IoT
-C6 = ?
+```bash
+bin/rails db:"create_game[lib/data/{FILENAME}.json]"
 ```
+
+Make sure to use an existing filename when using this command.
+
+> In the deployed app, you will need to login to the app machine first via `fly ssh console`.
+
+Refer to `lib/data/` for the required structure of the JSON file.
+
+We curate the possible roll values via a combination of dice and sides, as they are present in the database. Valid shortcodes to be posted are currently `A{1-6}`, `B{1-6}`, `C{1-6}`.
 
 Each die has a "surprise" side, marked with a question tag. This side will pick a random term to be included in the idea generation prompt.
 
 Also, some of the labels have a "shadow" label, which means that not the exact term is sent to the idea generation service, but a modified, more specific one.
-
-See details for all this in `db/seeds.rb`.
 
 ## Requirements
 
@@ -124,7 +108,17 @@ Once the app is deployed, you need to manually run `fly ssh console -C "/rails/b
 
 In the lifecycle of the app, you might find the following commands useful.
 
-#### Sclaing your app server
+#### Restarting the app server
+
+This has become necessary a few times, because the connection between the app and the Redis server had timed out.
+
+```bash
+fly apps restart idea-machine
+```
+
+> Replace `idea-machine` with your app name on Fly.
+
+#### Scaling your app server
 
 ```bash
 fly scale vm shared-cpu-2x
@@ -153,10 +147,10 @@ curl \
   -H "Authorization: Bearer {TOKEN-YOU-SET-IN-CREDENTIALS}" \
   -X POST \
   -d 'shortcode=C3' \
-  {DEPLOYMENT-URL}/api/v1/rolls
+  {DEPLOYMENT-URL}/api/v2/games/{GAME-ID}/rolls
 ```
 
-Please replace the values in curly braces (and the curly braces!) with the actual values provided in our password vault.
+Please replace the values in curly braces (and the curly braces!) with the actual values provided in our password vault. The `GAME-ID` refers to the ID of the game route, e.g. `http://localhost:3000/games/1` (where the ID is 1 in this case.)
 
 The important bit in the request is the shortcode payload that is sent. As of now, we have agreed that all dice emit their result via a mapping of A-C for the die and 1-6 for the result side. This means that currently the shortcodes `A{1-6}`, `B{1-6}`, and `C{1-6}` are valid. All other combinations will be rejected by the app.
 

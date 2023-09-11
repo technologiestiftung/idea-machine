@@ -17,7 +17,17 @@ three:
   title: "App"
   shortcode: 13
 
-unused:
-  die: unused
+four:
+  die: four
   title: "Cucumber"
   shortcode: 21
+
+five:
+  die: four
+  title: "Tomato"
+  shortcode: 4
+
+six:
+  die: four
+  title: "Banana"
+  shortcode: 7
