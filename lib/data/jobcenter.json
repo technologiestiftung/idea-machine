@@ -1,0 +1,68 @@
+{
+  "game": {
+    "title": "Ideenwürfel beim Jobcenter",
+    "dice": [
+      {
+        "title": "focus_group",
+        "shortcode": "A",
+        "sides": [
+          { "title": "Rampensau" },
+          { "title": "Quereinsteiger" },
+          { "title": "Visionär" },
+          { "title": "waschechter Berliner",  "variations": ["waschechte Berlinerin"]},
+          { "title": "Eltern" },
+          { "title": "?",
+            "variations": [
+              "Frauen",
+              "Männer",
+              "Diverse",
+              "Zugezogene",
+              "Such dir eins aus"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "topic",
+        "shortcode": "B",
+        "sides": [
+          { "title": "Schlaf" },
+          { "title": "Stressbewältigung" },
+          { "title": "gesunde Ernährung" },
+          { "title": "Bewegung im Büro" },
+          { "title": "Suchtprävention" },
+          {
+            "title": "?",
+            "variations": [
+              "Büro-Golf",
+              "Gesundheitsvorsorge",
+              "Entspannungsübungen",
+              "Such dir eins aus"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "medium",
+        "shortcode": "C",
+        "sides": [
+          { "title": "Arbeitspause" },
+          { "title": "Dachterrasse" },
+          { "title": "Website & App" },
+          { "title": "Wissensdatenbank" },
+          { "title": "Volkspark Friedrichshain" },
+          {
+            "title": "?",
+            "variations": [
+              "Flur",
+              "Hof",
+              "Aktion",
+              "Kunstinstallation",
+              "Such dir eins aus"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
