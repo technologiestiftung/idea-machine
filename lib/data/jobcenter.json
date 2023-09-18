@@ -9,7 +9,7 @@
           { "title": "Rampensau" },
           { "title": "Quereinsteiger" },
           { "title": "Visionär" },
-          { "title": "waschechter Berliner",  "variations": ["waschechte Berlinerin"]},
+          { "title": "waschechter Berliner",  "variations": ["waschechter Berliner", "waschechte Berlinerin"]},
           { "title": "Eltern" },
           { "title": "?",
             "variations": [
