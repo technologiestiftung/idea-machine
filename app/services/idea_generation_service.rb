@@ -11,8 +11,7 @@ class IdeaGenerationService
     return nil if focus_group.blank? || topic.blank? || medium.blank?
 
     prompt = <<~PROMPT
-      Generiere mir eine neue Produktidee für ein smartes Berlin, deren Funktion
-      in einer Zeile beschrieben wird. Themenfeld: #{topic}, Zielgruppe #{focus_group} Medium: #{medium}. Ein bisschen futuristisch und witzig kann die die Antwort auch sein. Die Antwort soll so formatiert sein: "Titel": Beschreibung
+      Du bist ein Ideengenerator für die Mitarbeiter im Jobcenter. Ziel ist es, mit deiner Idee die Gesundheit der spezifischen Zielgruppe zu fördern. Die Idee sollte in maximal drei Sätzen beschrieben werden. Themenfeld: #{topic}, Zielgruppe #{focus_group} Medium: #{medium}. Ein bisschen futuristisch und witzig kann die die Antwort auch sein. Die Antwort soll so formatiert sein: "Titel": Beschreibung
     PROMPT
 
     TextGenerationService.new(prompt).call
