@@ -38,6 +38,6 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:title, dice_attributes: [:title, :shortcode, sides_attributes: [:title, :shortcode]])
+    params.require(:game).permit(:title, dice_attributes: [:title, :shortcode, sides_attributes: [:title, :shortcode, :variations]])
   end
 end

@@ -28,4 +28,16 @@ class SideTest < ActiveSupport::TestCase
 
     assert second_side.rolls.empty?
   end
+
+  test "accepts variations as a string and creates array from it" do
+    side = Side.new(die: dice(:one), title: "Side note", variations: "entry", shortcode: 2)
+    assert side.valid?
+    assert_equal side.variations, ["entry"]
+  end
+
+  test "accepts variations as a semicolon-separated string" do
+    side = Side.new(die: dice(:one), title: "Side note", variations: "hey;there;vars", shortcode: 2)
+    assert side.valid?
+    assert_equal side.variations, ["hey", "there", "vars"]
+  end
 end
