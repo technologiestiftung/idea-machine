@@ -57,7 +57,7 @@ COPY --from=build /rails /rails
 # Run and own only the runtime files as a non-root user for security
 RUN useradd rails --create-home --shell /bin/bash && \
     mkdir /data && \
-    chown -R rails:rails db log storage tmp /data
+    chown -R rails:rails db log tmp /data
 USER rails:rails
 
 # Deployment options
