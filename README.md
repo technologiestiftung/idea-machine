@@ -1,21 +1,5 @@
 # (Semi-serious) Idea Machine
 
-## Todo
-
-- [x] introduce Games and make all dice _optionally_ belong to a game
-- [x] associate existing dice to first Game
-- setup resourceful routes e.g. /games/1 and /api/v2/games/1/rolls
-- deprecate old API route
-- build UI for creating new Games (only creation, no updates, no delete for now)
-- create dice and sides together with Game creation
-
-```ruby
-Die.all.each do |die|
-  die.game = Game.first
-  die.save!
-end
-```
-
 Web app that creates ChatGPT-generated ideas for the digitalization of Berlin. The ideas are explicitly semi-serious and are intended as a conversation starter. The ideas are generated from physical die rolls that emit their result side and POST it to the web app. Each side is associated with a term such as "Web-App", "Gesundheit", etc. that serves as input to the idea generation.
 
 ![Technical setup of the app](/public/idea-machine-setup-v2.png)
