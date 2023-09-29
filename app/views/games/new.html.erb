@@ -1,0 +1,7 @@
+<%= tag.div class: class_names("w-full max-w-screen-lg mx-auto", "px-8 pt-0", "grid gap-y-10") do %>
+  <%= tag.div class: "flex gap-x-3 items-center" do %>
+    <%= tag.h1 "Neues Spiel anlegen", class: "text-5xl font-bold" %>
+    <%= tag.span "Beta", class: "h-min border-4 px-2 py-1 border-gray-900 font-bold uppercase" %>
+  <% end %>
+  <%= render "form", game: @game %>
+<% end %>

@@ -3,6 +3,7 @@ class Die < ApplicationRecord
 
   belongs_to :game, optional: true
   has_many :sides, dependent: :destroy
+  accepts_nested_attributes_for :sides
   has_many :rolls, through: :sides
 
   enum :title, {"focus_group" => 0, "topic" => 1, "medium" => 2}

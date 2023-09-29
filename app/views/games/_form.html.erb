@@ -1,0 +1,54 @@
+<%= form_with(model: game, class: "grid gap-6 grid-cols-3 items-start") do |form| %>
+  <div class="col-span-3 grid gap-y-1">
+    <%= form.label :title, "Titel des Spiels" %>
+    <%= form.text_field :title, class: "w-full" %>
+    <% if game.errors.key?(:title) %>
+      <ul class="text-danger mt-1">
+        <% game.errors.full_messages_for(:title).each do |error_message| %>
+        <%= tag.li class: "text-warning" do %>
+          ⚠ <%= error_message %>
+        <% end %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <% valid_die_values.each_with_index do |obj, index| %>
+    <%= tag.div class: "grid gap-y-6" do %>
+      <%= form.fields_for "dice_attributes[#{index + 1}]", Die.new do |die_form| %>
+        <%= die_form.hidden_field :title, value: obj[:title] %>
+        <%= die_form.hidden_field :shortcode, value: obj[:shortcode] %>
+
+        <%= tag.div class: "scale-75" do %>
+          <%= render DieComponent.new(theme: obj[:title]) do %>
+            <%= obj[:title] %>
+          <% end %>
+        <% end %>
+
+        <% 6.times do |index| %>
+          <%= die_form.fields_for "sides_attributes[#{index + 1}]", Side.new do |sides_form| %>
+            <%= tag.div class: "grid" do %>
+              <%= sides_form.label :title, "Sichtbares Label", class: class_names("sr-only", {"not-sr-only": index == 0}) %>
+              <%= sides_form.text_field :title, class: "w-full" %>
+              <%= sides_form.hidden_field :shortcode, value: index + 1 %>
+              <details class="pt-1 pb-3 px-3 open:bg-gray-100">
+                <summary class="text-gray-700">Abweichende Begriffe?</summary>
+                <div class="mt-3">
+                  <%= sides_form.text_field :variations, class: "w-full", aria_describedby: "variationsHint" %>
+                  <%= tag.span "Bitte separariert mit Semikolon (;)", id: "variationsHint", class: "text-sm" %>
+                  <%= tag.p "Nur nötig, wenn du andere Begriffe als das sichtbare Label für die Ideengenerierung benutzen willst.", class: "mt-2 text-sm" %>
+                  <%= tag.p "Beispiel 1: Das sichtbare Label ist \"?\", soll aber nicht zur Ideengenerierung benutzt werden. Dann trage unten bitte etwas ein wie z.B. \"Begriff A;Begriff B;Begriff C\" (ohne Anführungszeichen)", class: "mt-2 text-sm" %>
+                  <%= tag.p "Beispiel 2: Das sichtbare Label ist \"Berliner:innen\", du möchtest aber zusätzlich \"Berliner\" und \"Berlinerinnen\" als mögliche Option. Dann trage unten bitte ein: \"Berliner:innen;Berliner;Berlinerinnen\" (ohne Anführungszeichen)", class: "mt-2 text-sm" %>
+                </div>
+              </details>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <div class="col-span-3 justify-self-end">
+    <%= form.submit "Spiel erstellen", class: "bg-gray-900 text-white p-3 uppercase font-bold cursor-pointer" %>
+  </div>
+<% end %>

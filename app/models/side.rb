@@ -1,8 +1,8 @@
 class Side < ApplicationRecord
   serialize :variations
-  after_initialize do |side|
-    side.variations ||= [side.title] if side.variations.blank?
-  end
+
+  after_initialize :normalize_variations
+
   after_commit :roll_side, on: [:create], if: proc { |side| side.die.rolls.empty? }
 
   belongs_to :die
@@ -12,6 +12,15 @@ class Side < ApplicationRecord
   validates :shortcode, presence: true, uniqueness: {scope: :die_id}
 
   private
+
+  def normalize_variations
+    case variations
+    when ->(v) { v.blank? }
+      self.variations = [title]
+    when String
+      self.variations = variations.split(";")
+    end
+  end
 
   def roll_side
     Roll.create side: self

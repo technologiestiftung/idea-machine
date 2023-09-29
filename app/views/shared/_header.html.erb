@@ -1,5 +1,7 @@
 <header class="container mx-auto max-w-screen-2xl py-12 px-8 flex gap-x-2 items-center justify-between">
-  <%= image_tag "/citylab-logo-monochrome.svg", class: "w-64 h-auto" %>
+  <%= link_to root_path, aria: {label: "Startseite"} do %>
+    <%= image_tag "/citylab-logo-monochrome.svg", class: "w-64 h-auto" %>
+  <% end %>
   <h1 class="text-gray-900 font-extrabold text-2xl">
     <%= yield :header_title %>
   </h1>

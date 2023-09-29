@@ -23,6 +23,9 @@ module.exports = {
       },
       gray: colors.gray,
       white: "#fff",
+      warning: {
+        DEFAULT: "#ff2222",
+      },
     },
     extend: {
       fontFamily: {
