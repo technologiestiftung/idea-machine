@@ -25,7 +25,7 @@ class GamesController < ApplicationController
     respond_to do |format|
       if @game.save
         format.html do
-          redirect_to games_path
+          redirect_to game_path(@game), notice: "Willkommen zum neuen Spiel! POSTe Würfelereignisse an den Pfad: #{api_v2_game_rolls_path(@game)}"
         end
       else
         format.html do
