@@ -32,6 +32,16 @@ Also, some of the labels have a "shadow" label, which means that not the exact t
 - SQLite3
 - Redis
 
+## Technical summary
+
+In alignment with the [MVC pattern used in Rails](https://guides.rubyonrails.org/getting_started.html#mvc-and-you), we've modeled the app in the following way:
+
+A `Game` has many dice (model `Die`). Each `Die` has many `Side`'s and each `Side` has a label associated with it. From the outside we POST `Roll`'s. Each `Roll` is associated with a `Side`. All this is saved in the database and represented in the `app/models` folder.
+
+Of importance is also the realtime communication that happens over Rails' built-in Websockets integration ([example for integration in the `Roll` model](https://github.com/technologiestiftung/idea-machine/blob/b6bf472520411acb4e6d6e1f032e1f0d91e7eb10/app/models/roll.rb#L15)). This is necessary because the UI needs to react to each `Roll` and the form used for generating `Idea`'s is populated with the `Side`'s associated with the latest `Roll` for each `Die`.
+
+The trigger for printing is done [on the JavaScript side](app/javascript/controllers/localhost_post_controller.js) because we need to interact with the printing server that is hosted on a Raspberry Pi that has the deployed Rails app opened in a browser.
+
 ## Development
 
 ### Credentials
